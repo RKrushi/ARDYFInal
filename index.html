@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EPM Wealth — Bridging the gap between your reality &amp; your Purpose</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* ══ TOKENS ══ */
+:root{
+  --cream:#f5ede0;--cream2:#ede4d6;--cream3:#faf4ec;
+  --warm:#8b6342;--warm2:#c49a5a;--warm3:#e2c47a;
+  --char:#1c2540;--char2:#2a2a2a;--navy:#0d1f3c;
+  --gold:#c49a5a;--gold2:#d4aa6a;
+  --border:#e0d4c0;--border2:#cfc3ad;
+  --muted:#5a4e3a;--muted2:#7a6a54;
+  --white:#ffffff;--offwh:#faf7f2;
+  --blush:#f5ede0;
+  --color-bg:#f7f6f3;
+  --color-surface:#ffffff;
+  --color-dark:#0a0a0a;
+  --color-dark-mid:#111111;
+  --color-accent:#b8965a;
+  --color-accent-dim:rgba(184,150,90,0.18);
+  --color-text-primary:#1a1a1a;
+  --color-text-muted:#6b6b6b;
+  --color-text-white:#f0ede8;
+  --color-text-faint:rgba(240,237,232,0.55);
+  --color-border:rgba(255,255,255,0.12);
+  --color-nav-bg:rgba(255,255,255,0.97);
+  --color-nav-border:rgba(0,0,0,0.07);
+  --font-display:'Cormorant Garamond',Georgia,serif;
+  --font-body:'DM Sans','Helvetica Neue',sans-serif;
+  --nav-height:72px;
+  --radius-sm:4px;
+  --radius-md:8px;
+  --transition-fast:0.18s ease;
+  --transition-mid:0.32s cubic-bezier(0.22,1,0.36,1);
+  --transition-slow:0.55s cubic-bezier(0.22,1,0.36,1);
+  --hero-max:1460px;
+  --hero-pad:0px;
+  --inner-pad:48px;
+}
+
+.solutions-wrap,.intro-section,#about{background:#ffffff !important;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:17px;scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;color:var(--char);background:var(--blush);overflow-x:hidden;line-height:1.65}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+video{display:block;max-width:100%}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ══ UTILS ══ */
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.label{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;font-weight:600;color:var(--warm);display:block;margin-bottom:14px}
+.label.light{color:rgba(255,255,255,.45)}
+.label.gold{color:var(--gold2)}
+.h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4.5vw,58px);font-weight:400;line-height:1.1;color:var(--char)}
+.h2.light{color:var(--white)}
+.h2 em{font-style:italic;color:var(--warm)}
+.body-text{font-size:14px;color:var(--muted);line-height:1.9}
+.body-text.light{color:rgba(255,255,255,.5)}
+.arrow-link{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--char);border-bottom:1px solid var(--char);padding-bottom:2px;transition:gap .2s}
+.arrow-link:hover{gap:14px}
+.arrow-link.warm{color:var(--warm);border-bottom-color:var(--warm)}
+.arrow-link.gold{color:var(--gold2);border-bottom-color:rgba(196,154,90,.4)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-26px);transition:opacity .75s ease,transform .75s ease}
+.reveal-left.visible{opacity:1;transform:none}
+
+/* ══ NAV ══ */
+.nav-outer{position:relative;z-index:600;padding:10px 32px;margin-bottom:-78px;}
+nav{
+  background:rgba(240,232,218,0.96);backdrop-filter:blur(14px);
+  border:1px solid rgba(180,162,138,.5);border-radius:6px;
+  height:52px;padding:0 24px;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  box-shadow:0 2px 24px rgba(0,0,0,.1);transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.18)}
+.nav-left{display:flex;align-items:center;gap:34px}
+.nav-center{display:flex;align-items:center;justify-content:center}
+.nav-right{display:flex;align-items:center;justify-content:flex-end;gap:20px}
+.nav-a{font-family:'Cormorant Garamond',serif;font-size:15.5px;color:var(--char);font-weight:400;transition:color .2s;white-space:nowrap;}
+.nav-logo-img{height:32px;width:auto;object-fit:contain;display:block;}
+.nav-a:hover{color:var(--warm)}
+.nav-logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;letter-spacing:3px;color:var(--char);text-transform:uppercase;}
+.nav-badge{background:var(--warm);color:#fff;font-size:8px;letter-spacing:.8px;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;margin-right:4px;}
+.nav-uhnw{display:flex;align-items:center;gap:5px;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--char);transition:color .2s;white-space:nowrap;}
+.nav-uhnw:hover{color:var(--warm)}
+.nav-contact{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--char);transition:color .2s;}
+.nav-contact:hover{color:var(--warm)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.nav-hamburger span{width:22px;height:1.5px;background:var(--char)}
+
+/* ══ HERO SECTION ══ */
+.hero-section{
+  padding-top:var(--nav-height);
+  padding-bottom:80px;
+  background:var(--color-bg);
+  position:relative;
+  overflow:hidden;
+}
+.hero-section::before{
+  content:'';position:absolute;top:0;right:0;
+  width:calc((100vw - 1460px) / 2 + 40px);
+  height:calc(var(--nav-height) + 88px + (min(100vw,1460px) * 7 / 16) + 240px);
+  background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=85');
+  background-size:cover;background-position:center top;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 45%);
+  mask-image:linear-gradient(to right,transparent 0%,black 45%);
+  opacity:0.55;z-index:0;
+}
+.hero-section::after{
+  content:'';position:absolute;top:0;left:0;
+  width:calc((100vw - 1460px) / 2 + 40px);
+  height:calc(var(--nav-height) + 88px + (min(100vw,1460px) * 7 / 16) + 240px);
+  background-image:url('https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=85');
+  background-size:cover;background-position:center top;
+  -webkit-mask-image:linear-gradient(to left,transparent 0%,black 45%);
+  mask-image:linear-gradient(to left,transparent 0%,black 45%);
+  opacity:0.55;z-index:0;
+}
+.hero-container{position:relative;z-index:1;max-width:var(--hero-max);margin:0 auto;padding:0 var(--hero-pad);}
+
+/* ── Eyebrow ── */
+.hero-eyebrow{
+  display:flex;align-items:center;gap:16px;
+  padding:40px var(--inner-pad) 0;margin-bottom:28px;
+  opacity:0;transform:translateY(12px);
+  animation:fadeUp 0.7s 0.15s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.eyebrow-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--color-accent),transparent);}
+.eyebrow-text{font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-accent);white-space:nowrap;}
+
+/* ── Video wrapper & block ── */
+.video-wrapper{opacity:0;transform:translateY(20px);animation:fadeUp 0.8s 0.28s cubic-bezier(0.22,1,0.36,1) forwards;}
+.video-block{position:relative;width:100%;aspect-ratio:16/7;background:var(--color-dark);border-radius:var(--radius-md) var(--radius-md) 0 0;overflow:hidden;}
+
+/* Background looping video */
+.hero-bg-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:1;
+  opacity:1;
+}
+
+/* ── Video overlay ── */
+.video-overlay{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;}
+.overlay-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;}
+.overlay-gradient{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(10,10,10,0.2) 0%,rgba(10,10,10,0.75) 100%),linear-gradient(180deg,rgba(10,10,10,0.15) 0%,rgba(10,10,10,0.6) 100%);}
+.overlay-content{position:relative;z-index:1;text-align:center;pointer-events:none;}
+.overlay-headline{font-family:var(--font-display);font-size:clamp(28px,4.5vw,62px);font-weight:300;color:var(--color-text-white);letter-spacing:0.04em;line-height:1.2;text-shadow:0 2px 30px rgba(0,0,0,0.4);}
+
+/* ── Play button ── */
+.play-btn{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:5;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  background:none;border:none;cursor:pointer;
+  transition:transform var(--transition-mid);
+}
+.play-btn:hover{transform:translate(-50%,-50%) scale(1.08);}
+.play-btn svg{filter:drop-shadow(0 4px 24px rgba(0,0,0,0.5));}
+.play-btn:hover circle{stroke:rgba(184,150,90,0.7);}
+.play-btn:hover polygon{fill:var(--color-accent);}
+.play-btn circle,.play-btn polygon{transition:stroke .18s,fill .18s;}
+.play-label-text{font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.75);}
+
+/* ── Info block ── */
+.info-block{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;
+  background:var(--color-dark-mid);border-radius:0 0 var(--radius-md) var(--radius-md);
+  width:100%;opacity:0;transform:translateY(10px);
+  animation:fadeUp 0.7s 0.45s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.info-divider{width:1px;background:var(--color-border);margin:36px 0;flex-shrink:0;}
+.info-col{padding:44px var(--inner-pad);display:flex;flex-direction:column;gap:14px;}
+.info-col--right{padding-left:calc(var(--inner-pad) + 4px);}
+.info-tag{font-family:var(--font-body);font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent);}
+.info-heading{font-family:var(--font-display);font-size:clamp(22px,2.6vw,34px);font-weight:400;line-height:1.2;color:var(--color-text-white);letter-spacing:0.01em;}
+.info-body{font-family:var(--font-body);font-size:13.5px;font-weight:300;line-height:1.75;color:var(--color-text-faint);max-width:420px;}
+.info-cta{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent);transition:gap var(--transition-fast);}
+.info-cta:hover{gap:12px;}
+.info-cta svg{flex-shrink:0;transition:transform var(--transition-fast);}
+.info-cta:hover svg{transform:translateX(3px);}
+
+/* ── Stats strip ── */
+.stats-strip{
+  display:flex;align-items:center;justify-content:center;gap:0;
+  margin-top:48px;padding:36px var(--inner-pad);
+  border-top:1px solid rgba(0,0,0,0.07);border-bottom:1px solid rgba(0,0,0,0.07);
+  opacity:0;animation:fadeUp 0.7s 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.stat-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 24px;}
+.stat-sep{width:1px;height:40px;background:rgba(0,0,0,0.12);flex-shrink:0;}
+.stat-number{font-family:var(--font-display);font-size:clamp(22px,3vw,36px);font-weight:500;color:var(--color-dark);letter-spacing:0.02em;line-height:1;}
+.stat-label{font-family:var(--font-body);font-size:11px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-muted);}
+
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+
+/* ══ FULLSCREEN VIDEO MODAL ══ */
+.video-modal{
+  position:fixed;inset:0;
+  z-index:999999;
+  background:rgba(0,0,0,0.96);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.video-modal.open{
+  display:flex !important;
+}
+.video-modal-inner{
+  position:relative;
+  width:90vw;
+  max-width:1200px;
+  aspect-ratio:16/9;
+  background:#000;
+  box-shadow:0 32px 100px rgba(0,0,0,0.9);
+}
+.video-modal-inner video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:contain;display:block;
+}
+.video-modal-close{
+  position:absolute;
+  top:-52px;right:0;
+  display:flex;align-items:center;gap:8px;
+  background:none;
+  border:1.5px solid rgba(255,255,255,0.45);
+  color:rgba(255,255,255,0.85);
+  padding:9px 20px;
+  font-family:'Jost',sans-serif;
+  font-size:12px;font-weight:500;
+  letter-spacing:0.15em;text-transform:uppercase;
+  cursor:pointer;
+  transition:border-color .18s,color .18s,background .18s;
+}
+.video-modal-close:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,0.08);}
+.video-modal-backdrop{position:fixed;inset:0;z-index:-1;cursor:pointer;}
+
+/* ── Hero responsive ── */
+@media(max-width:1200px){
+  :root{--hero-max:100%;--inner-pad:36px;}
+  .hero-section::before,.hero-section::after{width:60px;opacity:0.3;}
+}
+@media(max-width:860px){
+  .hero-section::before,.hero-section::after{display:none;}
+  .hero-section{padding-bottom:60px;}
+  .hero-eyebrow{padding-top:28px;}
+  .video-block{aspect-ratio:16/9;}
+  .info-block{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+  .info-divider{width:80%;height:1px;margin:0 auto;}
+  .info-col{padding:32px 24px;}
+  .info-col--right{padding-left:24px;}
+  .info-body{max-width:100%;}
+  .stats-strip{flex-wrap:wrap;gap:28px;padding:32px 16px;}
+  .stat-sep{display:none;}
+  .stat-item{flex:0 0 calc(50% - 28px);}
+  .video-modal-inner{width:96vw;}
+  .video-modal-close{top:-44px;padding:7px 14px;font-size:11px;}
+}
+@media(max-width:480px){
+  .overlay-headline{font-size:22px;}
+  .info-col{padding:28px 20px;}
+}
+
+/* ══ SECTIONS ══ */
+.section{padding:88px 7%}
+.section-sm{padding:64px 7%}
+
+/* ══ INTRO ══ */
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto}
+.intro-h{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:400;line-height:1.15;color:var(--char)}
+.intro-h em{font-style:italic;color:var(--warm)}
+
+/* ══ WM CARDS ══ */
+.wm-cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border2);}
+.wm-card{position:relative;overflow:hidden;cursor:pointer;min-height:420px;display:block;background:#1a1208;}
+.wm-card-photo{position:absolute;inset:0;z-index:0;}
+.wm-card-photo img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s cubic-bezier(.4,0,.2,1),filter .6s;filter:saturate(.85);}
+.wm-card:hover .wm-card-photo img{transform:scale(1.05);filter:saturate(1);}
+.wm-card-body{position:relative;z-index:2;width:55%;height:100%;min-height:420px;padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(28,20,12,0.52);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-right:1px solid rgba(255,255,255,.07);transition:background .35s;box-sizing:border-box;}
+.wm-card:hover .wm-card-body{background:rgba(18,12,6,0.62);}
+.wm-card-top{flex:1;}
+.wm-card-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,2.4vw,36px);font-weight:400;line-height:1.05;color:var(--white);margin-bottom:14px;}
+.wm-card-desc{font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.85;}
+.wm-card-invest-block{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;margin-top:24px;margin-bottom:14px;}
+.wm-card-invest{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600;margin-bottom:6px;}
+.wm-card-amount{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--white);}
+.wm-card-link{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;color:var(--warm2);transition:gap .25s;margin-top:14px;}
+.wm-card:hover .wm-card-link{gap:14px;}
+.wm-card-overlay{display:none;}
+
+/* ══ ASSET MANAGEMENT ══ */
+.am-wrap{background:var(--cream2);}
+.am-cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);}
+.am-card{position:relative;overflow:hidden;cursor:pointer;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--cream);}
+.am-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.4,0,.2,1),filter .6s;filter:saturate(.75) brightness(.7) sepia(.15);}
+.am-card:hover img{transform:scale(1.05);filter:saturate(.85) brightness(.62) sepia(.1);}
+.am-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,14,8,0.88) 0%,rgba(30,20,10,0.55) 50%,rgba(20,14,8,0.18) 100%);}
+.am-card-body{position:relative;z-index:2;padding:28px 30px;}
+.am-card-min{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:5px;font-weight:600;}
+.am-card-amount{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--warm2);margin-bottom:12px;font-style:italic;}
+.am-card-title{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.8vw,36px);font-weight:400;color:var(--white);line-height:1.1;margin-bottom:10px;}
+.am-card-desc{font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.8;max-width:360px;}
+.am-card-link{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--warm2);margin-top:18px;font-weight:600;transition:gap .2s;border-bottom:1px solid rgba(196,154,90,.3);padding-bottom:2px;}
+.am-card-link:hover{gap:12px;}
+.am-wrap .label.gold{color:var(--warm);}
+.am-wrap .h2.light{color:var(--char);}
+.am-wrap .body-text.light{color:var(--muted);}
+
+/* ══ VAULT ══ */
+.vault-wrap{background:var(--blush)}
+.vault-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:60px;align-items:start}
+.vault-subscribe{margin-top:32px;padding:28px;background:var(--white);border:1px solid var(--border)}
+.vault-inp-row{display:flex}
+.vault-inp{flex:1;padding:11px 14px;background:var(--cream);border:1px solid var(--border2);border-right:none;font-family:'Jost',sans-serif;font-size:13px;outline:none;transition:border-color .2s;color:var(--char)}
+.vault-inp:focus{border-color:var(--warm)}
+.vault-sub-btn{padding:11px 20px;background:var(--char);color:var(--white);border:none;cursor:pointer;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;font-family:'Jost',sans-serif;transition:background .2s}
+.vault-sub-btn:hover{background:var(--navy)}
+.vault-featured{position:relative;overflow:hidden;cursor:pointer;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;border-radius:2px}
+.vault-featured img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.vault-featured:hover img{transform:scale(1.04)}
+.vault-featured-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.3) 55%,transparent 100%)}
+.vault-featured-body{position:relative;z-index:2;padding:24px}
+.vault-small-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+.vault-small-card{background:var(--white);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:box-shadow .2s}
+.vault-small-card:hover{box-shadow:0 6px 28px rgba(0,0,0,.08)}
+.vault-card-thumb{width:100%;height:140px;overflow:hidden}
+.vault-card-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.vault-small-card:hover .vault-card-thumb img{transform:scale(1.05)}
+.vault-card-body{padding:16px}
+.vault-card-cat{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);font-weight:600;margin-bottom:6px}
+.vault-card-title{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:500;line-height:1.35;color:var(--char)}
+.vault-card-date{font-size:10px;color:var(--muted2);margin-top:7px}
+
+/* ══ UHNW BANNER ══ */
+.uhnw-banner{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border);border-bottom:none;}
+.uhnw-left{padding:60px 7%;display:flex;align-items:center;gap:36px;background:var(--cream2);}
+.uhnw-thumb{width:260px;height:260px;flex-shrink:0;overflow:hidden;border-radius:2px;}
+.uhnw-thumb img{width:100%;height:100%;object-fit:cover;}
+.uhnw-text-block .label{font-size:11px;letter-spacing:2px;color:var(--muted2);margin-bottom:10px;}
+.uhnw-text-block h3{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,42px);font-weight:400;line-height:1.15;color:var(--char);margin-bottom:14px;}
+.uhnw-text-block p{font-size:13px;color:var(--muted2);line-height:1.75;margin-bottom:20px;}
+.uhnw-right{position:relative;overflow:hidden;min-height:380px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#111;}
+.uhnw-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.uhnw-right-overlay{position:absolute;inset:0;background:rgba(10,8,6,.38);}
+.uhnw-play{position:relative;z-index:2;width:72px;height:72px;border-radius:50%;border:2px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;}
+.uhnw-right:hover .uhnw-play{border-color:var(--gold2);background:rgba(196,154,90,.15);}
+.uhnw-play i{color:rgba(255,255,255,.9);font-size:20px;margin-left:5px;}
+
+/* ══ FOUNDER ══ */
+.founder-wrap{background:#ffffff;display:grid;grid-template-columns:52% 48%;align-items:start;padding:80px 2% 80px 6%;gap:0;min-height:580px;}
+.founder-left{padding:40px 80px 40px 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;}
+.founder-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.6vw,36px);font-style:italic;font-weight:500;line-height:1.65;color:var(--char);text-align:center;max-width:520px;width:100%;}
+.founder-quote::before{display:none;}
+.founder-sig{margin:28px auto 0;font-family:'Cormorant Garamond',serif;font-size:36px;font-style:italic;font-weight:300;color:var(--warm);text-align:center;display:block;width:100%;white-space:nowrap;letter-spacing:2px;transform:rotate(-3deg) translateX(-4px);transform-origin:center;line-height:1.3;}
+.founder-title-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);margin-top:16px;font-weight:600;text-align:center;display:block;transform:none;}
+.founder-right{width:340px;height:500px;overflow:hidden;border-radius:2px;margin:0 0 0 20px;position:relative;display:block;}
+.founder-right img{width:100%;height:100%;object-fit:cover;object-position:top center;position:absolute;inset:0;}
+.founder-right>div{display:none;}
+.founder-left .arrow-link{display:none;}
+
+/* ══ RECOGNITION ══ */
+.recog-wrap{background:var(--blush);padding:88px 0 0;text-align:center;overflow:hidden;}
+.recog-wrap>.label{display:block;text-align:center;margin-bottom:16px;}
+.recog-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4.5vw,56px);font-weight:400;color:var(--char);line-height:1.1;margin-bottom:0;}
+.recog-results{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,6vw,80px);font-style:italic;font-weight:300;color:var(--warm);line-height:1;margin:8px 0 0;letter-spacing:1px;}
+.recog-desc{font-size:14px;color:var(--muted);max-width:560px;margin:24px auto 0;line-height:1.85;text-align:center;}
+.recog-award-name{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.2vw,28px);font-weight:600;color:var(--char);line-height:1.3;margin-bottom:20px;}
+.recog-award-source{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted2);font-weight:600;}
+.award-years{display:flex;justify-content:center;border-bottom:1px solid var(--border);overflow-x:auto;padding:0 5%;background:var(--blush);}
+.award-year{flex:1;text-align:center;padding:16px 8px;letter-spacing:1.5px;color:var(--muted2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s;white-space:nowrap;font-family:'Cormorant Garamond',serif;font-size:16px;}
+.award-year.active{color:var(--char);border-bottom-color:var(--warm);}
+.award-year:hover{color:var(--char);}
+
+/* ══ PRESS ══ */
+.press-wrap{background:var(--blush);padding:80px 7%}
+.press-actions{display:flex;gap:28px;margin:10px 0 40px}
+.press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border2)}
+.press-card{background:var(--white);overflow:hidden;cursor:pointer;transition:box-shadow .2s}
+.press-card:hover{box-shadow:0 8px 40px rgba(0,0,0,.07)}
+.press-thumb{width:100%;height:200px;overflow:hidden}
+.press-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.press-card:hover .press-thumb img{transform:scale(1.04)}
+.press-card-body{padding:24px}
+.press-source{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.press-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;line-height:1.35;color:var(--char)}
+.press-date{font-size:11px;color:var(--muted2);margin-top:10px}
+.press-divider-dots{display:flex;justify-content:center;gap:8px;margin:28px 0 0}
+.press-dot{width:32px;height:2px;background:var(--border2)}
+.press-dot.active{background:var(--warm)}
+
+/* ══ CAREERS ══ */
+.careers-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:640px}
+.careers-left{padding:80px 7%;background:var(--blush)}
+.careers-list{list-style:none;margin-top:20px}
+.careers-list li{padding:13px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px;font-size:13.5px;color:var(--muted);transition:color .2s}
+.careers-list li:hover{color:var(--char)}
+.careers-list li::before{content:'→';color:var(--warm);flex-shrink:0;margin-top:1px}
+.careers-right{position:relative;overflow:hidden;background:#0a0a0a;cursor:none}
+.collage-slider{width:100%;height:100%;position:relative;min-height:640px}
+.collage-slide{position:absolute;inset:0;opacity:0;transition:opacity .55s cubic-bezier(.4,0,.2,1)}
+.collage-slide.active{opacity:1}
+.collage-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.collage-slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.15) 50%,transparent 100%)}
+.collage-info{position:absolute;bottom:0;left:0;right:0;z-index:4;padding:28px 32px;display:flex;align-items:flex-end;justify-content:space-between}
+.collage-label{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--white);line-height:1.1}
+.collage-num{font-family:'Cormorant Garamond',serif;font-size:13px;color:rgba(255,255,255,.4);letter-spacing:1px}
+.collage-progress{position:absolute;bottom:0;left:0;height:2px;background:var(--gold);z-index:5;transition:width .1s linear;width:0%}
+.collage-zones{position:absolute;inset:0;z-index:3;display:flex}
+.collage-zone{flex:1;height:100%}
+.collage-thumbs{position:absolute;top:20px;left:50%;transform:translateX(-50%);z-index:4;display:flex;gap:6px}
+.collage-thumb{width:34px;height:3px;background:rgba(255,255,255,.22);cursor:pointer;transition:background .2s}
+.collage-thumb.active{background:var(--gold)}
+.career-cursor{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:10;transform:translate(-50%,-50%);transition:transform .15s;box-shadow:0 0 0 2px rgba(196,154,90,.3)}
+
+/* ══ CSR ══ */
+.csr-wrap{position:relative;overflow:hidden;min-height:560px;display:flex;align-items:center}
+.csr-wrap img.csr-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.csr-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.88) 0%,rgba(0,0,0,.6) 55%,rgba(0,0,0,.22) 100%)}
+.csr-content{position:relative;z-index:2;padding:88px 7%;max-width:560px}
+
+/* ══ VALUES / RISK ══ */
+.risk-wrap{background:var(--offwh);padding:88px 7%}
+.risk-header{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:52px}
+.risk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border2);background:var(--border2)}
+.risk-card{background:var(--white);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:box-shadow .25s;cursor:pointer}
+.risk-card:hover{box-shadow:0 8px 40px rgba(0,0,0,.1);z-index:2}
+.risk-card-img{width:100%;height:220px;overflow:hidden;position:relative;flex-shrink:0}
+.risk-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.risk-card:hover .risk-card-img img{transform:scale(1.06)}
+.risk-card-letter-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35);transition:background .3s}
+.risk-card:hover .risk-card-letter-overlay{background:rgba(0,0,0,.22)}
+.risk-card-letter{font-family:'Cormorant Garamond',serif;font-size:120px;font-weight:300;color:rgba(255,255,255,.85);line-height:1;text-shadow:0 4px 24px rgba(0,0,0,.4);-webkit-text-stroke:1px rgba(255,255,255,.6)}
+.risk-card-body{padding:24px 22px;flex:1;display:flex;flex-direction:column;justify-content:space-between;border-top:3px solid var(--gold)}
+.risk-card-word{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--warm);font-weight:600;margin-bottom:10px}
+.risk-card-desc{font-size:12.5px;color:var(--muted);line-height:1.8;flex:1}
+
+/* ══ SIP + WHY ══ */
+.sip-values-wrap{display:grid;grid-template-columns:1fr 1fr;background:var(--cream)}
+.sip-left{padding:80px 7%;border-right:1px solid var(--border2)}
+.values-right{padding:80px 5%}
+.sip-label-t{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);font-weight:600;display:block;margin-bottom:6px}
+.sip-inp{width:100%;padding:10px 14px;background:var(--white);border:1px solid var(--border2);color:var(--char);font-family:'Jost',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.sip-inp:focus{border-color:var(--warm)}
+.sip-btn{width:100%;padding:13px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;font-family:'Jost',sans-serif;background:var(--char);color:var(--white);border:none;cursor:pointer;margin-top:10px;transition:background .2s}
+.sip-btn:hover{background:var(--navy)}
+.sip-results{display:none;margin-top:24px;background:var(--char);padding:28px}
+.sip-results.show{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.sip-rn{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--gold2)}
+.sip-rl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px}
+
+/* ══ CONTACT ══ */
+.contact-wrap{padding:88px 7%;background:var(--blush)}
+.contact-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4.5vw,58px);font-weight:300;line-height:1.1;color:var(--char);margin-bottom:52px}
+.contact-title em{font-style:italic;color:var(--warm)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.ci-row{display:flex;gap:14px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border);transition:padding-left .2s}
+.ci-row:hover{padding-left:6px}
+.ci-icon{width:40px;height:40px;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.ci-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);font-weight:600;margin-bottom:4px}
+.ci-val{font-size:13px;color:var(--muted);line-height:1.7}
+.ci-val a{color:var(--muted);transition:color .2s}
+.ci-val a:hover{color:var(--char)}
+.offices-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px}
+.office-item{padding:13px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;padding-right:20px;cursor:pointer;transition:color .2s}
+.office-item:hover{color:var(--warm)}
+.office-plus{color:var(--warm);font-size:18px;line-height:1}
+.form-group{margin-bottom:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);font-weight:600;display:block;margin-bottom:6px}
+.form-inp,.form-textarea,.form-select{width:100%;padding:11px 14px;background:var(--white);border:1px solid var(--border2);color:var(--char);font-family:'Jost',sans-serif;font-size:13px;outline:none;transition:border-color .2s;appearance:none}
+.form-inp:focus,.form-textarea:focus,.form-select:focus{border-color:var(--warm)}
+.form-textarea{min-height:110px;resize:vertical}
+.form-radio-group{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.form-radio-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);cursor:pointer}
+.form-radio-item input{accent-color:var(--warm)}
+.form-submit{width:100%;padding:14px;background:var(--char);color:var(--white);border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-top:6px;transition:background .2s}
+.form-submit:hover{background:var(--navy)}
+.form-ok{display:none;margin-top:12px;padding:12px;background:var(--white);border:1px solid var(--border);font-size:13px;color:var(--muted);text-align:center}
+
+/* ══ FOOTER ══ */
+footer{background:var(--blush);padding:72px 5% 32px;border-top:1px solid var(--border)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--char);margin-bottom:8px;letter-spacing:1px}
+.footer-brand span{font-style:italic;color:var(--warm)}
+.footer-tagline{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);margin-bottom:14px}
+.footer-about{font-size:12.5px;color:var(--muted2);line-height:1.9;max-width:240px}
+.footer-badges{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.footer-badge{padding:4px 10px;border:1px solid var(--border2);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);font-weight:600}
+.footer-socials{display:flex;gap:8px;margin-top:16px}
+.footer-soc{width:34px;height:34px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted2);transition:border-color .2s,color .2s}
+.footer-soc:hover{border-color:var(--warm);color:var(--warm)}
+.footer-col h4{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted2);margin-bottom:18px;font-weight:600}
+.footer-col a{display:block;color:var(--muted2);font-size:12.5px;margin-bottom:10px;transition:all .2s}
+.footer-col a:hover{color:var(--warm);padding-left:4px}
+.footer-rule{height:1px;background:var(--border);margin-bottom:22px}
+.footer-legal{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-bottom:28px;font-size:10px;color:var(--muted2);line-height:1.9}
+.footer-legal-head{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted2);flex-wrap:wrap;gap:16px}
+.footer-bottom a{color:var(--muted2);margin-left:16px;transition:color .2s}
+.footer-bottom a:hover{color:var(--warm)}
+
+/* ══ FLOATING ══ */
+.sf{position:fixed;left:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:200}
+.sf a{width:32px;height:32px;border:1px solid var(--border);background:rgba(245,237,224,.9);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);box-shadow:0 2px 10px rgba(0,0,0,.06);transition:border-color .2s,color .2s}
+.sf a:hover{border-color:var(--warm);color:var(--warm)}
+.wa-btn{position:fixed;bottom:22px;left:16px;width:44px;height:44px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:200;box-shadow:0 4px 16px rgba(37,211,102,.3);transition:transform .2s}
+.wa-btn:hover{transform:scale(1.08)}
+
+/* ══ MOBILE MENU ══ */
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--white);z-index:700;flex-direction:column;padding:24px 5%}
+.mobile-menu.open{display:flex}
+.mobile-menu-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+.mobile-menu a{font-size:28px;font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--char);padding:16px 0;border-bottom:1px solid var(--border);display:block}
+.mobile-close{font-size:22px;cursor:pointer;color:var(--muted)}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  .wm-cards-grid,.am-cards-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .risk-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .intro-grid,.founder-wrap,.careers-wrap,.contact-grid,.sip-values-wrap,.risk-header,.uhnw-banner,.vault-grid{grid-template-columns:1fr}
+  .vault-small-grid{grid-template-columns:repeat(2,1fr)}
+  .press-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-left,.nav-right .nav-uhnw,.nav-right .nav-contact{display:none}
+  .nav-hamburger{display:flex}
+  .risk-grid{grid-template-columns:1fr 1fr}
+  .sf,.wa-btn{display:none}
+  .founder-wrap{grid-template-columns:1fr;gap:48px;padding:60px 5%;}
+  .founder-left{padding:0;}
+  .founder-right{width:100%;height:360px;margin:0;}
+  .recog-stats{gap:32px;flex-wrap:wrap;}
+  .uhnw-banner{grid-template-columns:1fr;}
+  .wm-card-body{width:100%;min-height:auto;padding:28px 24px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(18,12,6,0.75);}
+  .wm-card{min-height:360px;}
+  .wm-cards-grid,.am-cards-grid{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  .risk-grid{grid-template-columns:1fr}
+  .vault-small-grid{grid-template-columns:1fr}
+  .form-row,.footer-legal{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ FULLSCREEN VIDEO MODAL ══ -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-backdrop" id="modalBackdrop"></div>
+  <div class="video-modal-inner">
+    <button class="video-modal-close" id="modalClose">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+      Cancel
+    </button>
+    <!-- Same video file as background — with controls for fullscreen modal -->
+    <video id="modalVideo" src="EPM header theme.mp4" controls playsinline></video>
+  </div>
+</div>
+
+<!-- FLOATING SOCIAL -->
+<div class="sf">
+  <a href="https://www.instagram.com/epm_wealth/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.youtube.com/@epmwealth101" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+  <a href="https://www.linkedin.com/company/epm-wealth/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+  <a href="https://www.facebook.com/epmwealthadvisor" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+</div>
+<a href="https://wa.me/919999939333" class="wa-btn" target="_blank" rel="noopener" title="WhatsApp">💬</a>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <span style="font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:2px;text-transform:uppercase;color:var(--char)">EPM Wealth</span>
+    <span class="mobile-close" onclick="closeMobileMenu()"><i class="fa fa-times"></i></span>
+  </div>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#wealth" onclick="closeMobileMenu()">Wealth Management</a>
+  <a href="#assets" onclick="closeMobileMenu()">Asset Management</a>
+  <a href="#vault" onclick="closeMobileMenu()">Vault</a>
+  <a href="#careers" onclick="closeMobileMenu()">Careers</a>
+  <a href="#contact" onclick="closeMobileMenu()" style="color:var(--warm)">Contact</a>
+</div>
+
+<!-- ══ NAV ══ -->
+<div class="nav-outer" id="navOuter">
+<nav id="mainNav">
+  <div class="nav-left">
+    <b><a href="#about" class="nav-a">About</a></b>
+    <b><a href="#wealth" class="nav-a">Wealth Management</a></b>
+    <b><a href="#assets" class="nav-a">Asset Management</a></b>
+    <b><a href="#vault" class="nav-a">Vault</a></b>
+  </div>
+  <div class="nav-center">
+    <a href="#home" class="nav-logo-wrap">
+      <img class="nav-logo-img" src="logo-emp.png" alt="EPM Wealth"
+        onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';"/>
+      <span id="logoFallback" style="display:none;align-items:center;gap:8px;">
+        <svg viewBox="0 0 48 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="30">
+          <path d="M4 8 L12 32 L24 16 L36 32 L44 8" stroke="#1c2540" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="4" y1="8" x2="44" y2="8" stroke="#1c2540" stroke-width="1.2" opacity="0.4"/>
+        </svg>
+        <span class="nav-logo-text">EPM Wealth</span>
+      </span>
+    </a>
+  </div>
+  <div class="nav-right">
+    <a href="#vault" class="nav-uhnw">
+      <span class="nav-badge"><b>New</b></span>
+      <b>UHNW Event Calendar 2026</b>
+    </a>
+    <a href="#contact" class="nav-contact"><b>Contact</b></a>
+    <div class="nav-hamburger" id="hamburger" onclick="openMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+</div>
+
+<!-- ══ HERO SECTION ══ -->
+<main class="hero-section" id="home">
+  <div class="hero-container">
+
+    <!-- Eyebrow -->
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Bridging the gap between your reality &amp; your Purpose</span>
+      <span class="eyebrow-line"></span>
+    </div>
+
+    <!-- Video Block -->
+    <div class="video-wrapper">
+      <div class="video-block">
+
+        <!-- Background video: autoplay, muted, looping — always playing silently -->
+        <video
+          id="heroBgVideo"
+          class="hero-bg-video"
+          src="EPM header theme.mp4"
+          poster="brige.jpg"
+          autoplay muted loop playsinline
+        ></video>
+
+        <!-- Overlay: text + grid + gradient -->
+        <div class="video-overlay" id="videoOverlay">
+          <div class="overlay-grid"></div>
+          <div class="overlay-gradient"></div>
+          <div class="overlay-content">
+            
+          </div>
+        </div>
+
+        <!-- Play button: click opens fullscreen modal -->
+        <button class="play-btn" id="playBtn" aria-label="Watch our story">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+            <circle cx="40" cy="40" r="39" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+            <polygon points="32,24 58,40 32,56" fill="white"/>
+          </svg>
+          <span class="play-label-text">Watch Our Story</span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Info Block -->
+    <div class="info-block">
+      <div class="info-col info-col--left">
+        <span class="info-tag">Our Purpose</span>
+        <h2 class="info-heading">Helping you create<br/>an enduring legacy</h2>
+        <p class="info-body">Wealth Advisory is beyond just building a portfolio. By serving some of India's most prominent business families since 2011, we have learnt the importance of taking a holistic, global yet personalised approach to meeting our clients' wealth management needs.</p>
+        <a href="#about" class="info-cta">
+          Explore Wealth Services
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+      <div class="info-divider" aria-hidden="true"></div>
+      <div class="info-col info-col--right">
+        <span class="info-tag">Our Reach</span>
+        <h2 class="info-heading">₹100 Cr+<br/>Assets Under Management</h2>
+        <p class="info-body">Trusted by over 1,000 clients across 25+ cities, our disciplined investment philosophy and personalised advisory have consistently delivered superior risk-adjusted returns across market cycles since 2011.</p>
+        <a href="#assets" class="info-cta">
+          Explore Asset Management
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats Strip -->
+    <div class="stats-strip" id="statsStrip">
+      <div class="stat-item"><span class="stat-number">15+</span><span class="stat-label">Years of Excellence</span></div>
+      <div class="stat-sep"></div>
+      <div class="stat-item"><span class="stat-number">1,000+</span><span class="stat-label">Unique Clients</span></div>
+      <div class="stat-sep"></div>
+      <div class="stat-item"><span class="stat-number">25+</span><span class="stat-label">Cities Across India</span></div>
+      <div class="stat-sep"></div>
+      <div class="stat-item"><span class="stat-number">₹100 Cr</span><span class="stat-label">AUM</span></div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ══ INTRO ══ -->
+<section class="section" id="about" style="background:var(--blush);border-bottom:1px solid var(--border)">
+  <div class="intro-grid">
+    <div class="reveal-left">
+      <span class="label">Solutions</span>
+      <h2 class="intro-h">Helping you create an <em>enduring legacy</em></h2>
+      <a href="#contact" class="arrow-link warm" style="margin-top:28px">Start the conversation <i class="fa fa-arrow-right"></i></a>
+    </div>
+    <div class="reveal">
+      <p class="body-text">Wealth Advisory is beyond just building a portfolio. By serving some of India's most prominent business families since 2011, we have learnt the importance of taking a holistic, global yet personalised approach to meeting our clients' wealth management needs.</p>
+      <p class="body-text" style="margin-top:18px">Combining our in-depth knowledge and innovative technology, we create a plan tailored to your complex needs. Your financial consultant — backed by an experienced team — can help you navigate every important decision.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WEALTH MANAGEMENT ══ -->
+<section class="section" id="wealth" style="background:var(--blush)">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:40px" class="reveal">
+    <div><span class="label">Services</span><h2 class="h2">Wealth Management</h2></div>
+    <div><p class="body-text">Our wealth management services are tailored to your unique wealth creation journeys. Explore bespoke solutions for your specific requirements.</p></div>
+  </div>
+  <div class="wm-cards-grid reveal">
+    <div class="wm-card">
+      <div class="wm-card-body">
+        <div class="wm-card-top"><div class="wm-card-title">Family<br>Businesses</div><div class="wm-card-desc">Investment advisory, succession, family governance solutions, and philanthropic advisory for family patriarchs and the next generation.</div></div>
+        <div class="wm-card-bottom"><div class="wm-card-invest-block"><div class="wm-card-invest">Investable Asset</div><div class="wm-card-amount">Greater than INR 100 Crores</div></div><a class="wm-card-link">Explore Service <i class="fa fa-arrow-right"></i></a></div>
+      </div>
+      <div class="wm-card-photo"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&q=85&auto=format&fit=crop" alt="Family Businesses"/></div>
+    </div>
+    <div class="wm-card">
+      <div class="wm-card-body">
+        <div class="wm-card-top"><div class="wm-card-title">Professionals<br>and CXOs</div><div class="wm-card-desc">Holistic offerings for senior corporate leaders &amp; professionals such as doctors, lawyers, designers, and more.</div></div>
+        <div class="wm-card-bottom"><div class="wm-card-invest-block"><div class="wm-card-invest">Investable Asset</div><div class="wm-card-amount">Greater than INR 10 Crores</div></div><a class="wm-card-link">Explore Service <i class="fa fa-arrow-right"></i></a></div>
+      </div>
+      <div class="wm-card-photo"><img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=900&q=80&auto=format&fit=crop" alt="Professionals and CXOs"/></div>
+    </div>
+    <div class="wm-card">
+      <div class="wm-card-body">
+        <div class="wm-card-top"><div class="wm-card-title">Founders &amp;<br>Entrepreneurs</div><div class="wm-card-desc">Comprehensive personal wealth planning for India's notable startup founders, from pre-liquidity to post-exit stage.</div></div>
+        <div class="wm-card-bottom"><div class="wm-card-invest-block"><div class="wm-card-invest">Investable Asset</div><div class="wm-card-amount">Greater than INR 5 Crores</div></div><a class="wm-card-link">Explore Service <i class="fa fa-arrow-right"></i></a></div>
+      </div>
+      <div class="wm-card-photo"><img src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=900&q=80&auto=format&fit=crop" alt="Founders and Entrepreneurs"/></div>
+    </div>
+    <div class="wm-card">
+      <div class="wm-card-body">
+        <div class="wm-card-top"><div class="wm-card-title">Women<br>Clients</div><div class="wm-card-desc">Investment advisory, financial literacy, and community building for women leaders through our HERitage programme.</div></div>
+        <div class="wm-card-bottom"><div class="wm-card-invest-block"><div class="wm-card-invest">Investable Asset</div><div class="wm-card-amount">Greater than INR 5 Crores</div></div><a class="wm-card-link">Explore Service <i class="fa fa-arrow-right"></i></a></div>
+      </div>
+      <div class="wm-card-photo"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80&auto=format&fit=crop" alt="Women Clients"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ASSET MANAGEMENT ══ -->
+<section class="section am-wrap" id="assets">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:40px" class="reveal">
+    <div><span class="label gold">Services</span><h2 class="h2 light">Asset Management</h2></div>
+    <div><p class="body-text light">Strategic solutions curated to facilitate meaningful and efficient access to sophisticated asset classes.</p></div>
+  </div>
+  <div class="am-cards-grid reveal">
+    <div class="am-card"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=85&auto=format&fit=crop" alt="Discretionary PMS"/><div class="am-card-overlay"></div><div class="am-card-body"><div class="am-card-min">Minimum Amount</div><div class="am-card-amount">INR 1 Crore</div><div class="am-card-title">Discretionary PMS</div><div class="am-card-desc">Outsource your investment portfolio decision-making to EPM's expert advisors for superior risk-adjusted returns.</div><div class="am-card-link">Explore <i class="fa fa-arrow-right"></i></div></div></div>
+    <div class="am-card"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=85&auto=format&fit=crop" alt="EPM Fund of Funds"/><div class="am-card-overlay"></div><div class="am-card-body"><div class="am-card-min">Minimum Amount</div><div class="am-card-amount">INR 1 Crore</div><div class="am-card-title">EPM Fund of Funds</div><div class="am-card-desc">Access top quartile private market fund managers via our Fund of Funds platform for enhanced diversification.</div><div class="am-card-link">Explore <i class="fa fa-arrow-right"></i></div></div></div>
+    <div class="am-card"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=85&auto=format&fit=crop" alt="Smart Beta"/><div class="am-card-overlay"></div><div class="am-card-body"><div class="am-card-min">Minimum Amount</div><div class="am-card-amount">INR 1 Crore</div><div class="am-card-title">Smart Beta</div><div class="am-card-desc">Create consistent alpha at low cost with a unique 3rd strategy beyond active &amp; passive investing approaches.</div><div class="am-card-link">Explore <i class="fa fa-arrow-right"></i></div></div></div>
+    <div class="am-card"><img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=900&q=85&auto=format&fit=crop" alt="Global Investments"/><div class="am-card-overlay"></div><div class="am-card-body"><div class="am-card-min">Minimum Amount</div><div class="am-card-amount">INR 1 Crore</div><div class="am-card-title">Global Investments</div><div class="am-card-desc">Build a globally diversified portfolio with advice from a global investment manager for superior risk-adjusted returns.</div><div class="am-card-link">Explore <i class="fa fa-arrow-right"></i></div></div></div>
+  </div>
+</section>
+
+<!-- ══ VAULT ══ -->
+<section class="vault-wrap section" id="vault">
+  <div class="vault-grid">
+    <div class="reveal-left">
+      <span class="label">Vault</span>
+      <h2 class="h2" style="font-size:clamp(28px,3.5vw,46px)">Your access to<br><em>rich insights</em></h2>
+      <p class="body-text" style="margin-top:20px">From experienced partners at the forefront of today's financial trends and beyond. Trusted by the top 0.01% of the country.</p>
+      <a href="#contact" class="arrow-link warm" style="margin-top:20px">Explore Vault <i class="fa fa-arrow-right"></i></a>
+      <div class="vault-subscribe">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--char);margin-bottom:6px">Sign up for priority access</div>
+        <p style="font-size:12px;color:var(--muted2);margin-bottom:16px;line-height:1.7">Get our insights delivered straight to your inbox.</p>
+        <div class="vault-inp-row"><input class="vault-inp" type="email" placeholder="Email Address"/><button class="vault-sub-btn">Subscribe →</button></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="vault-featured">
+        <img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?w=900&q=80&auto=format&fit=crop" alt="Featured article"/>
+        <div class="vault-featured-overlay"></div>
+        <div class="vault-featured-body">
+          <span style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px;display:block">Article · CIO's Desk · 03 March 2026</span>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:8px">Understanding the Iran–Israel–U.S. Conflict</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.7">The unfolding geopolitical tensions and their impact on markets.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="vault-small-grid reveal" style="margin-top:28px">
+    <div class="vault-small-card"><div class="vault-card-thumb"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=75&auto=format&fit=crop" alt="Union Budget"/></div><div class="vault-card-body"><div class="vault-card-cat">Article</div><div class="vault-card-title">Union Budget 2026–27 Decoded</div><div class="vault-card-date">03 February 2026</div></div></div>
+    <div class="vault-small-card"><div class="vault-card-thumb"><img src="https://images.unsplash.com/photo-1610375461246-83df859d849d?w=400&q=75&auto=format&fit=crop" alt="Gold"/></div><div class="vault-card-body"><div class="vault-card-cat">Article · CIO's Desk</div><div class="vault-card-title">Where does gold go from here?</div><div class="vault-card-date">20 January 2026</div></div></div>
+    <div class="vault-small-card"><div class="vault-card-thumb"><img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400&q=75&auto=format&fit=crop" alt="GIFT City"/></div><div class="vault-card-body"><div class="vault-card-cat">Article · CIO's Desk</div><div class="vault-card-title">The GIFT City Advantage</div><div class="vault-card-date">20 January 2026</div></div></div>
+    <div class="vault-small-card"><div class="vault-card-thumb"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=75&auto=format&fit=crop" alt="Silver"/></div><div class="vault-card-body"><div class="vault-card-cat">Article · CIO's Desk</div><div class="vault-card-title">Silver: Protecting Gains, Avoiding FOMO</div><div class="vault-card-date">20 January 2026</div></div></div>
+  </div>
+</section>
+
+<!-- ══ UHNW BANNER ══ -->
+<div class="uhnw-banner">
+  <div class="uhnw-left reveal-left">
+    <div class="uhnw-thumb"><img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=520&q=80&auto=format&fit=crop" alt="UHNW Event Calendar 2026"/></div>
+    <div class="uhnw-text-block">
+      <span class="label">2026</span>
+      <h3>UHNW Event Calendar</h3>
+      <p>Stay ahead of top-drawer global events and experiences.</p>
+      <a href="#contact" class="arrow-link warm">Learn More <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+  <div class="uhnw-right reveal">
+    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=900&q=80&auto=format&fit=crop" alt="EPM Brand"/>
+    <div class="uhnw-right-overlay"></div>
+    <div class="uhnw-play"><i class="fa fa-play"></i></div>
+  </div>
+</div>
+
+<!-- ══ FOUNDER ══ -->
+<div class="founder-wrap" id="about-founder">
+  <div class="founder-left reveal-left">
+    <div class="founder-quote">"The hallmark of our offering is professional and personalised wealth advisory services. Our clients rely on us to work with them on important and deeply personal issues around their financial well-being"</div>
+    <span class="founder-sig">Tanish Gupta</span>
+    <span class="founder-title-label">Additional &amp; Director</span>
+  </div>
+  <div class="founder-right reveal">
+    <img src="mr-tanish-gupta.jpeg" alt="Founder EPM Wealth"/>
+  </div>
+</div>
+
+<!-- ══ RECOGNITION ══ -->
+<div class="recog-wrap" id="recognition">
+  <span class="label">Awards</span>
+  <div class="recog-heading reveal">Recognition driven by</div>
+  <div class="recog-results reveal">Results</div>
+  <p class="recog-desc reveal">Our awards are a matter of great pride for us. Recognition is natural when our services and processes have added significant value to our clients' lives and businesses.</p>
+  <div class="recog-arch reveal" style="padding:48px 7% 0;text-align:center">
+    <div id="archAwardName" class="recog-award-name">Tanish Gupta — Forbes 50 over 50</div>
+    <div id="archAwardSub" style="color:var(--warm);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-top:4px">2026</div>
+    <div class="recog-award-icon" style="font-size:40px;margin:16px 0">🏆</div>
+    <div id="archAwardSource" class="recog-award-source">Forbes Global</div>
+  </div>
+  <div class="award-years reveal" style="margin-top:40px">
+    <div class="award-year active" onclick="switchYear(this,'Tanish Gupta — Forbes 50 over 50','Forbes Global','🏆')">2026</div>
+    <div class="award-year" onclick="switchYear(this,'ET Best Wealth Management Firms','Economic Times','🌟')">2025</div>
+    <div class="award-year" onclick="switchYear(this,'CNBCTV18 Wealth Excellence Award','CNBC TV18','🎖️')">2024</div>
+    <div class="award-year" onclick="switchYear(this,'Business Standard Elite Partner','Business Standard','💎')">2023</div>
+    <div class="award-year" onclick="switchYear(this,'Mint Best Wealth Advisory Firm','Mint','🥇')">2022</div>
+    <div class="award-year" onclick="switchYear(this,'Forbes Best Financial Advisors','Forbes India','🏅')">2021</div>
+    <div class="award-year" onclick="switchYear(this,'Outlook Money Best Wealth Manager','Outlook Money','⭐')">2020</div>
+    <div class="award-year" onclick="switchYear(this,'ET Wealth Investment Excellence','ET Wealth','🎗️')">2019</div>
+  </div>
+  <div style="display:flex;justify-content:center;gap:80px;margin-top:56px;padding:48px 7%;border-top:1px solid var(--border)" class="reveal">
+    <div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:300;color:var(--char);line-height:1">100<sup style="font-size:.45em;vertical-align:super">+</sup></div><div style="font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-top:8px">Cr Total AUM</div></div>
+    <div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:300;color:var(--char);line-height:1">1000<sup style="font-size:.45em;vertical-align:super">+</sup></div><div style="font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-top:8px">Unique Clients</div></div>
+    <div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:300;color:var(--char);line-height:1">25<sup style="font-size:.45em;vertical-align:super">+</sup></div><div style="font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-top:8px">Cities Served</div></div>
+  </div>
+</div>
+
+<!-- ══ PRESS ══ -->
+<div class="press-wrap" id="press">
+  <span class="label">Pressclub</span>
+  <h2 class="h2" style="margin-bottom:8px">What the press<br>has been saying</h2>
+  <div class="press-actions">
+    <a href="#" class="arrow-link warm">Explore Pressclub <i class="fa fa-arrow-right"></i></a>
+    <a href="#" class="arrow-link">Download Media Kit <i class="fa fa-arrow-right"></i></a>
+  </div>
+  <div class="press-grid reveal">
+    <div class="press-card"><div class="press-thumb"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80&auto=format&fit=crop" alt="SIP article"/></div><div class="press-card-body"><div class="press-source">Business Standard</div><div class="press-title">Equity SIP inflows see rare dip as volatility tests investor patience</div><div class="press-date">26 February 2026</div></div></div>
+    <div class="press-card"><div class="press-thumb"><img src="https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=600&q=80&auto=format&fit=crop" alt="AI stocks"/></div><div class="press-card-body"><div class="press-source">The Economic Times</div><div class="press-title">25 stocks that survived AI crash reveal what themes could work within Indian IT space</div><div class="press-date">26 February 2026</div></div></div>
+    <div class="press-card"><div class="press-thumb"><img src="https://images.unsplash.com/photo-1504270997636-07ddfbd48945?w=600&q=80&auto=format&fit=crop" alt="Mint article"/></div><div class="press-card-body"><div class="press-source">Mint</div><div class="press-title">AI a secular, long-term theme; worst of earnings firmly behind us, says EPM Wealth MD</div><div class="press-date">24 February 2026</div></div></div>
+  </div>
+  <div class="press-divider-dots"><div class="press-dot"></div><div class="press-dot active"></div><div class="press-dot"></div></div>
+</div>
+
+<!-- ══ CAREERS ══ -->
+<div class="careers-wrap" id="careers">
+  <div class="careers-left reveal-left">
+    <span class="label">Careers</span>
+    <h2 class="h2" style="margin-bottom:8px">If ethics and integrity<br>drive you,<br><em>look no further</em></h2>
+    <p class="body-text" style="margin-top:16px;margin-bottom:24px">Some of the most prominent business families in India place their trust in our wealth advisory services.</p>
+    <ul class="careers-list">
+      <li>Become a Financial Partner with EPM Wealth</li>
+      <li>Access exclusive training &amp; certification programs</li>
+      <li>Build your own client portfolio from day one</li>
+      <li>Earn passive income through referral networks</li>
+      <li>Get mentored by industry veterans</li>
+      <li>Scale with our proven frameworks &amp; tools</li>
+      <li>Unlock unlimited earning potential</li>
+      <li>Join a high-prestige profession shaping tomorrow's wealth</li>
+    </ul>
+    <a href="#contact" class="arrow-link warm" style="margin-top:28px">View Open Positions <i class="fa fa-arrow-right"></i></a>
+  </div>
+  <div class="careers-right" id="careerRight">
+    <div class="collage-slider" id="collageSlider">
+      <div class="collage-slide active" data-label="Wealth Creation"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&q=85&auto=format&fit=crop" alt="Wealth Creation"/><div class="collage-slide-overlay"></div></div>
+      <div class="collage-slide" data-label="Wealth Protection"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=85&auto=format&fit=crop" alt="Wealth Protection"/><div class="collage-slide-overlay"></div></div>
+      <div class="collage-slide" data-label="Partner Programme"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&q=85&auto=format&fit=crop" alt="Partner Programme"/><div class="collage-slide-overlay"></div></div>
+      <div class="collage-slide" data-label="Training &amp; Support"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=900&q=85&auto=format&fit=crop" alt="Training and Support"/><div class="collage-slide-overlay"></div></div>
+      <div class="collage-slide" data-label="Our Culture"><img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=900&q=85&auto=format&fit=crop" alt="Our Culture"/><div class="collage-slide-overlay"></div></div>
+      <div class="collage-zones" id="collageZones">
+        <div class="collage-zone" data-idx="0"></div><div class="collage-zone" data-idx="1"></div>
+        <div class="collage-zone" data-idx="2"></div><div class="collage-zone" data-idx="3"></div>
+        <div class="collage-zone" data-idx="4"></div>
+      </div>
+      <div class="collage-info"><div class="collage-label" id="collageLabel">Wealth Creation</div><div class="collage-num" id="collageNum">1 / 5</div></div>
+      <div class="collage-thumbs" id="collageThumbs">
+        <div class="collage-thumb active" data-idx="0"></div><div class="collage-thumb" data-idx="1"></div>
+        <div class="collage-thumb" data-idx="2"></div><div class="collage-thumb" data-idx="3"></div>
+        <div class="collage-thumb" data-idx="4"></div>
+      </div>
+      <div class="collage-progress" id="collageProgress"></div>
+      <div class="career-cursor" id="careerCursor"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CSR ══ -->
+<div class="csr-wrap">
+  <img class="csr-bg" src="istockphoto-184146069-1024x1024.jpg" alt="Forest aerial — ESG"/>
+  <div class="csr-overlay"></div>
+  <div class="csr-content reveal">
+    <span class="label gold">Responsible Investing</span>
+    <h2 class="h2 light" style="margin-bottom:22px">Our responsible vision for a better &amp; <em style="color:var(--gold2);font-style:italic">brighter future</em></h2>
+    <p class="body-text light">As capital allocators, we recognize the impact of our investment advice on the world around us. We are committed to enabling our clients to allocate their capital in a manner that fully optimises opportunities and minimizes risks to environmental, social, and governance (ESG) factors.</p>
+    <a href="#contact" class="arrow-link gold" style="margin-top:32px">Explore ESG <i class="fa fa-arrow-right"></i></a>
+  </div>
+</div>
+
+<!-- ══ VALUES (RISK) ══ -->
+<div class="risk-wrap" id="values">
+  <div class="risk-header">
+    <div class="reveal-left"><span class="label">Core Values</span><h2 class="h2">We believe in <em>RISK</em></h2></div>
+    <div class="reveal"><p class="body-text">Our four core values form the foundation of every client relationship and every investment decision we make.</p></div>
+  </div>
+  <div class="risk-grid reveal">
+    <div class="risk-card"><div class="risk-card-img"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80&auto=format&fit=crop" alt="Relationship"/><div class="risk-card-letter-overlay"><span class="risk-card-letter">R</span></div></div><div class="risk-card-body"><div class="risk-card-word">Relationship</div><div class="risk-card-desc">We build lasting partnerships grounded in trust, transparency, and a genuine commitment to long-term success.</div></div></div>
+    <div class="risk-card"><div class="risk-card-img"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80&auto=format&fit=crop" alt="Integrity"/><div class="risk-card-letter-overlay"><span class="risk-card-letter">I</span></div></div><div class="risk-card-body"><div class="risk-card-word">Integrity</div><div class="risk-card-desc">Every recommendation is unbiased and fully aligned with the client's interest. Complete transparency, always.</div></div></div>
+    <div class="risk-card"><div class="risk-card-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Simplicity"/><div class="risk-card-letter-overlay"><span class="risk-card-letter">S</span></div></div><div class="risk-card-body"><div class="risk-card-word">Simplicity</div><div class="risk-card-desc">We distil the complex world of finance into clear, actionable insights. Clarity over complexity, always.</div></div></div>
+    <div class="risk-card"><div class="risk-card-img"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=80&auto=format&fit=crop" alt="Knowledge"/><div class="risk-card-letter-overlay"><span class="risk-card-letter">K</span></div></div><div class="risk-card-body"><div class="risk-card-word">Knowledge</div><div class="risk-card-desc">Deep expertise across asset classes, geographies, and generations drives our advice and research.</div></div></div>
+  </div>
+</div>
+
+<!-- ══ SIP + WHY EPM ══ -->
+<div class="sip-values-wrap">
+  <div class="sip-left">
+    <span class="label">Plan Your Future</span>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,38px);font-weight:400;line-height:1.2;margin-bottom:28px">SIP Calculator</h3>
+    <div style="margin-bottom:16px"><label class="sip-label-t">Investment Amount (₹) *</label><input class="sip-inp" type="number" id="sipAmt" placeholder="e.g. 10,000"/></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+      <div><label class="sip-label-t">Period (Years)</label><input class="sip-inp" type="number" id="sipYrs" placeholder="e.g. 10"/></div>
+      <div><label class="sip-label-t">Frequency</label><select class="sip-inp" id="sipFreq"><option value="12">Monthly</option><option value="4">Quarterly</option><option value="1">Yearly</option></select></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div><label class="sip-label-t">Expected Returns (%)</label><input class="sip-inp" type="number" id="sipRate" placeholder="e.g. 12"/></div>
+      <div><label class="sip-label-t">Inflation Adj.</label><select class="sip-inp" id="sipInfl"><option value="0">None</option><option value="6">6%</option><option value="7">7%</option><option value="8">8%</option></select></div>
+    </div>
+    <button class="sip-btn" onclick="calcSip()">Calculate Returns</button>
+    <div class="sip-results" id="sipRes">
+      <div><div class="sip-rn" id="sInv">₹0</div><div class="sip-rl">Invested</div></div>
+      <div><div class="sip-rn" id="sGain">₹0</div><div class="sip-rl">Returns</div></div>
+      <div><div class="sip-rn" id="sTotal">₹0</div><div class="sip-rl">Total Value</div></div>
+    </div>
+  </div>
+  <div class="values-right">
+    <span class="label">Our Approach</span>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,38px);font-weight:400;line-height:1.2;margin-bottom:28px">Why Choose EPM</h3>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="padding:20px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:16px"><div style="width:32px;height:32px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;color:#fff">✓</div><div><div style="font-size:13px;font-weight:600;color:var(--char);margin-bottom:4px">SEBI Registered Investment Advisor</div><div style="font-size:12px;color:var(--muted);line-height:1.7">Fully regulated, unbiased advice with no commission-driven recommendations</div></div></div>
+      <div style="padding:20px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:16px"><div style="width:32px;height:32px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;color:#fff">✓</div><div><div style="font-size:13px;font-weight:600;color:var(--char);margin-bottom:4px">Holistic Family Office Services</div><div style="font-size:12px;color:var(--muted);line-height:1.7">360° coverage of your family's financial needs across generations</div></div></div>
+      <div style="padding:20px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:16px"><div style="width:32px;height:32px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;color:#fff">✓</div><div><div style="font-size:13px;font-weight:600;color:var(--char);margin-bottom:4px">Access to Global Markets</div><div style="font-size:12px;color:var(--muted);line-height:1.7">Curated international investment opportunities from top-quartile managers</div></div></div>
+      <div style="padding:20px 0;display:flex;align-items:flex-start;gap:16px"><div style="width:32px;height:32px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;color:#fff">✓</div><div><div style="font-size:13px;font-weight:600;color:var(--char);margin-bottom:4px">₹100+ Crore AUM · 1000+ Clients · 25+ Cities</div><div style="font-size:12px;color:var(--muted);line-height:1.7">A proven track record across market cycles since 2011</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact-wrap" id="contact">
+  <h2 class="contact-title">Your legacy <em>awaits here</em></h2>
+  <div class="contact-grid">
+    <div>
+      <div class="ci-row"><div class="ci-icon">📍</div><div><div class="ci-lbl">Address</div><div class="ci-val">612-A, 6th Floor, Wave Silver Tower,<br>Sector-18, Noida, UP 201301</div></div></div>
+      <div class="ci-row"><div class="ci-icon">📞</div><div><div class="ci-lbl">General Contact</div><div class="ci-val"><a href="tel:+911204264717">+91 0120 426 4717</a><br><a href="tel:+919899939333">+91 9899939333</a></div></div></div>
+      <div class="ci-row"><div class="ci-icon">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:info@epmwealth.com">info@epmwealth.com</a><br><a href="mailto:careers@epmwealth.com">careers@epmwealth.com</a></div></div></div>
+      <div class="ci-row"><div class="ci-icon">💼</div><div><div class="ci-lbl">Career</div><div class="ci-val"><a href="mailto:careers@epmwealth.com">careers@epmwealth.com</a></div></div></div>
+      <div style="margin-top:8px"><div class="ci-lbl" style="margin-bottom:0">Offices</div><div class="offices-grid">
+        <div class="office-item">Mumbai <span class="office-plus">+</span></div><div class="office-item">Noida <span class="office-plus">+</span></div>
+        <div class="office-item">Bengaluru <span class="office-plus">+</span></div><div class="office-item">Chennai <span class="office-plus">+</span></div>
+        <div class="office-item">Pune <span class="office-plus">+</span></div><div class="office-item">Kolkata <span class="office-plus">+</span></div>
+        <div class="office-item">Gujarat <span class="office-plus">+</span></div><div class="office-item">Lucknow <span class="office-plus">+</span></div>
+        <div class="office-item">Kanpur <span class="office-plus">+</span></div><div class="office-item">Gurugram <span class="office-plus">+</span></div>
+      </div></div>
+      <div style="margin-top:28px"><div class="ci-lbl" style="margin-bottom:12px">Follow Us</div>
+        <div style="display:flex;gap:10px">
+          <a href="https://www.linkedin.com/company/epm-wealth/" target="_blank" class="footer-soc"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@epmwealth101" target="_blank" class="footer-soc"><i class="fab fa-youtube"></i></a>
+          <a href="#" target="_blank" class="footer-soc"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/epm_wealth/" target="_blank" class="footer-soc"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form onsubmit="submitForm(event)">
+        <div class="form-group"><label class="form-label">Full Name *</label><input class="form-inp" type="text" placeholder="Your full name" required/></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Email Address *</label><input class="form-inp" type="email" placeholder="you@example.com" required/></div><div class="form-group"><label class="form-label">Contact Number *</label><input class="form-inp" type="tel" placeholder="+91 XXXXX XXXXX"/></div></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Company / Family Name *</label><input class="form-inp" type="text" placeholder="Company or family name" required/></div><div class="form-group"><label class="form-label">City *</label><input class="form-inp" type="text" placeholder="Your city" required/></div></div>
+        <div class="form-group"><label class="form-label">Topic of Enquiry *</label><div class="form-radio-group">
+          <label class="form-radio-item"><input type="radio" name="enquiry" value="Personal"/> Personal Wealth Advisory (₹5 Cr to ₹100 Cr)</label>
+          <label class="form-radio-item"><input type="radio" name="enquiry" value="Family Office"/> Family Office Advisory (₹100 Cr &amp; Above)</label>
+          <label class="form-radio-item"><input type="radio" name="enquiry" value="HERitage"/> HERitage — Wealth Advisory For Women (₹5 Cr &amp; Above)</label>
+          <label class="form-radio-item"><input type="radio" name="enquiry" value="Founders"/> Founders Circle (₹5 Cr &amp; Above)</label>
+          <label class="form-radio-item"><input type="radio" name="enquiry" value="FoF"/> Fund of Funds (₹1 Cr &amp; Above)</label>
+        </div></div>
+        <div class="form-group" style="margin-top:18px"><label class="form-label">How did you discover EPM Wealth?</label><div class="form-radio-group">
+          <label class="form-radio-item"><input type="radio" name="discover" value="News"/> News Publication</label>
+          <label class="form-radio-item"><input type="radio" name="discover" value="Search"/> Search Engine</label>
+          <label class="form-radio-item"><input type="radio" name="discover" value="UHNW"/> UHNW Event Calendar 2026</label>
+          <label class="form-radio-item"><input type="radio" name="discover" value="Recommended"/> Recommended by friend or colleague</label>
+          <label class="form-radio-item"><input type="radio" name="discover" value="Social"/> Social Media</label>
+          <label class="form-radio-item"><input type="radio" name="discover" value="YouTube"/> YouTube</label>
+          <label class="form-radio-item"><input type="radio" name="discover" value="Other"/> Other</label>
+        </div></div>
+        <div class="form-group" style="margin-top:18px"><label class="form-label">How can we help you?</label><textarea class="form-textarea" placeholder="Tell us about your financial goals..."></textarea></div>
+        <button type="submit" class="form-submit">Submit →</button>
+      </form>
+      <div class="form-ok" id="formOk">✅ Thank you! We'll be in touch within 24 hours.</div>
+      <p style="font-size:10px;color:var(--muted2);margin-top:12px;line-height:1.7;font-style:italic">*This form does not operate as a job portal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><svg viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="34"><path d="M3 6 L10 28 L20 14 L30 28 L37 6" stroke="#1c2540" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="3" y1="6" x2="37" y2="6" stroke="#1c2540" stroke-width="1" opacity="0.35"/></svg></div>
+      <div class="footer-brand">EPM <span>Wealth</span></div>
+      <div class="footer-tagline">Insight with integrity</div>
+      <p class="footer-about">AMFI &amp; BSE registered wealth management firm. Helping India's most prominent families bridge the gap between their reality and their purpose since 2011.</p>
+      <div class="footer-badges"><div class="footer-badge">AMFI 100255</div><div class="footer-badge">BSE 1197501</div><div class="footer-badge">SEBI Reg.</div></div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/epm_wealth/" class="footer-soc" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@epmwealth101" class="footer-soc" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/epm-wealth/" class="footer-soc" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.facebook.com/epmwealthadvisor" class="footer-soc" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/919999939333" class="footer-soc" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>About</h4><a href="#about">Overview</a><a href="#about">Leadership</a><a href="#about">Brand Story</a><a href="#contact">ESG</a></div>
+    <div class="footer-col"><h4>Wealth Management</h4><a href="#wealth">Family Business</a><a href="#wealth">Professionals &amp; CXOs</a><a href="#wealth">Founders &amp; Entrepreneurs</a><a href="#wealth">Women Clients</a></div>
+    <div class="footer-col"><h4>Asset Management</h4><a href="#assets">Discretionary PMS</a><a href="#assets">Fund of Funds</a><a href="#assets">Smart Beta</a><a href="#assets">Global Investments</a></div>
+    <div class="footer-col"><h4>Navigate</h4><a href="#vault">Vault</a><a href="#careers">Careers</a><a href="#contact">Contact</a><a href="tel:+911204264717">+91 0120 426 4717</a><a href="mailto:info@epmwealth.com">info@epmwealth.com</a></div>
+  </div>
+  <div class="footer-rule"></div>
+  <div class="footer-legal">
+    <div><div class="footer-legal-head">EPM Financial &amp; Investment Advisors Pvt Ltd</div>SEBI Registration No: INA000001811<br>CIN No: U74900MH2012PTC234921<br>PMS Registration No: INP000007818</div>
+    <div><div class="footer-legal-head">EPM Fund Managers Pvt Ltd</div>CIN No: U65990MH2020PTC340389<br>FOF I — IN/AIF2/21-22/0876 (Category 2 AIF)</div>
+    <div><div class="footer-legal-head">Status of Complaints</div>Beginning of the month: Nil<br>Received this month: Nil<br>Resolved during the month: Nil<br>Pending at end of month: Nil</div>
+  </div>
+  <div class="footer-rule"></div>
+  <div class="footer-bottom">
+    <span>© 2026 EPM Wealth. All Rights Reserved. AMFI Reg. 100255 | BSE Reg. 1197501</span>
+    <div><a href="#">Privacy Policy</a><a href="#">Disclaimer</a><a href="#">Regulatory Information</a></div>
+  </div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════
+   FULLSCREEN VIDEO MODAL — open / close
+   Called by play button click
+════════════════════════════════════════════════ */
+function openVideoModal() {
+  var modal = document.getElementById('videoModal');
+  var vid   = document.getElementById('modalVideo');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (vid) {
+    vid.currentTime = 0;
+    vid.play().catch(function(e) { console.warn('Modal play blocked:', e); });
+  }
+}
+
+function closeVideoModal() {
+  var modal = document.getElementById('videoModal');
+  var vid   = document.getElementById('modalVideo');
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  if (vid) { vid.pause(); vid.currentTime = 0; }
+}
+
+/* Wire up close button and backdrop */
+document.getElementById('modalClose').addEventListener('click', closeVideoModal);
+document.getElementById('modalBackdrop').addEventListener('click', closeVideoModal);
+
+/* Play button opens modal */
+document.getElementById('playBtn').addEventListener('click', openVideoModal);
+
+/* Escape key closes modal */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeVideoModal();
+});
+
+/* ════════════════════════════════════════════════
+   NAV scroll behaviour
+════════════════════════════════════════════════ */
+var nav     = document.getElementById('mainNav');
+var navOuter = document.getElementById('navOuter');
+window.addEventListener('scroll', function() {
+  var scrolled = window.scrollY > 60;
+  nav.classList.toggle('scrolled', scrolled);
+  navOuter.style.cssText = scrolled
+    ? 'position:fixed;top:0;left:0;right:0;z-index:600;padding:8px 28px;margin-bottom:0'
+    : 'position:relative;z-index:600;padding:16px 32px;margin-bottom:-94px';
+}, { passive: true });
+
+/* ════════════════════════════════════════════════
+   Scroll reveal
+════════════════════════════════════════════════ */
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal, .reveal-left').forEach(function(el) { io.observe(el); });
+
+/* ════════════════════════════════════════════════
+   Mobile menu
+════════════════════════════════════════════════ */
+function openMobileMenu()  { document.getElementById('mobileMenu').classList.add('open');    document.body.style.overflow = 'hidden'; }
+function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow = ''; }
+
+/* ════════════════════════════════════════════════
+   Stats counter animation
+════════════════════════════════════════════════ */
+(function() {
+  var strip = document.getElementById('statsStrip');
+  if (!strip || !('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) { animateCounters(); obs.unobserve(entry.target); }
+    });
+  }, { threshold: 0.4 });
+  obs.observe(strip);
+
+  function animateCounters() {
+    strip.querySelectorAll('.stat-number').forEach(function(el) {
+      var raw     = el.textContent.trim();
+      var prefix  = raw.match(/^[₹]/) ? raw[0] : '';
+      var suffix  = raw.match(/[+LCr %]+$/) ? raw.match(/[+LCr %]+$/)[0] : '';
+      var numeric = parseFloat(raw.replace(/[^0-9.]/g, ''));
+      if (isNaN(numeric)) return;
+      var duration = 1200, start = performance.now();
+      function step(now) {
+        var progress = Math.min((now - start) / duration, 1);
+        var ease = 1 - Math.pow(1 - progress, 3);
+        var formatted = Number.isInteger(numeric)
+          ? Math.round(numeric * ease).toLocaleString('en-IN')
+          : (numeric * ease).toFixed(1);
+        el.textContent = prefix + formatted + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = raw;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+})();
+
+/* ════════════════════════════════════════════════
+   Careers collage slider
+════════════════════════════════════════════════ */
+(function() {
+  var slides   = document.querySelectorAll('.collage-slide');
+  var thumbs   = document.querySelectorAll('.collage-thumb');
+  var label    = document.getElementById('collageLabel');
+  var num      = document.getElementById('collageNum');
+  var progress = document.getElementById('collageProgress');
+  var cursor   = document.getElementById('careerCursor');
+  var right    = document.getElementById('careerRight');
+  var zones    = document.querySelectorAll('.collage-zone');
+  if (!slides.length) return;
+  var current = 0, autoTimer;
+
+  function activate(i) {
+    if (i === current) return;
+    slides[current].classList.remove('active');
+    thumbs[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    thumbs[current].classList.add('active');
+    var lbl = slides[current].dataset.label || '';
+    label.textContent = lbl.replace('&amp;', '&');
+    num.textContent   = (current + 1) + ' / ' + slides.length;
+    resetProgress();
+  }
+
+  function resetProgress() {
+    progress.style.transition = 'none';
+    progress.style.width = '0%';
+    setTimeout(function() {
+      progress.style.transition = 'width 4.5s linear';
+      progress.style.width = '100%';
+    }, 30);
+  }
+
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function() { activate((current + 1) % slides.length); }, 5000);
+  }
+
+  zones.forEach(function(z) {
+    z.addEventListener('mouseenter', function() { activate(parseInt(z.dataset.idx)); clearInterval(autoTimer); });
+    z.addEventListener('mouseleave', startAuto);
+  });
+  thumbs.forEach(function(t) {
+    t.addEventListener('click', function() { activate(parseInt(t.dataset.idx)); startAuto(); });
+  });
+
+  if (right) {
+    right.addEventListener('mousemove', function(e) {
+      var r = right.getBoundingClientRect();
+      cursor.style.left    = (e.clientX - r.left) + 'px';
+      cursor.style.top     = (e.clientY - r.top) + 'px';
+      cursor.style.opacity = '1';
+    });
+    right.addEventListener('mouseleave', function() { cursor.style.opacity = '0'; startAuto(); });
+    right.addEventListener('mouseenter', function() { cursor.style.opacity = '1'; });
+  }
+
+  resetProgress();
+  startAuto();
+})();
+
+/* ════════════════════════════════════════════════
+   Award year switcher
+════════════════════════════════════════════════ */
+function switchYear(el, name, source, icon) {
+  document.querySelectorAll('.award-year').forEach(function(y) { y.classList.remove('active'); });
+  el.classList.add('active');
+  document.getElementById('archAwardName').textContent   = name;
+  document.getElementById('archAwardSource').textContent = source;
+  document.getElementById('archAwardSub').textContent    = el.textContent;
+  document.querySelector('.recog-award-icon').textContent = icon;
+}
+
+/* ════════════════════════════════════════════════
+   SIP Calculator
+════════════════════════════════════════════════ */
+function calcSip() {
+  var P = parseFloat(document.getElementById('sipAmt').value)  || 0;
+  var n = parseInt(document.getElementById('sipFreq').value)   || 12;
+  var Y = parseFloat(document.getElementById('sipYrs').value)  || 0;
+  var R = parseFloat(document.getElementById('sipRate').value) || 0;
+  R = Math.max(0, R - (parseFloat(document.getElementById('sipInfl').value) || 0));
+  var r = R / 100 / n, tt = n * Y;
+  var mat = r > 0 ? P * ((Math.pow(1 + r, tt) - 1) / r) * (1 + r) : P * tt;
+  var inv = P * tt;
+  var fmt = function(v) { return '₹' + Math.round(v).toLocaleString('en-IN'); };
+  document.getElementById('sInv').textContent   = fmt(inv);
+  document.getElementById('sGain').textContent  = fmt(mat - inv);
+  document.getElementById('sTotal').textContent = fmt(mat);
+  document.getElementById('sipRes').classList.add('show');
+}
+
+/* ════════════════════════════════════════════════
+   Contact form
+════════════════════════════════════════════════ */
+function submitForm(e) {
+  e.preventDefault();
+  document.getElementById('formOk').style.display = 'block';
+  e.target.reset();
+}
+</script>
+</body>
+</html>
