@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Page Title — ARDY Real Estate Dubai</title>
+<meta name="description" content="Page description here."/>
+
+<!-- ── Shared Stylesheets (always include these 3) ── -->
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/nav.css"/>
+<link rel="stylesheet" href="css/footer.css"/>
+
+<!-- ── Page-specific styles go here ── -->
+<style>
+  /* Add your page-specific CSS below */
+  .page-hero {
+    min-height: 320px;
+    padding: 120px 5% 60px;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(196,182,147,.25);
+  }
+  .page-hero .eyebrow { margin-bottom: 12px; }
+  .page-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--brown);
+    line-height: 1.05;
+  }
+  .page-hero h1 em { font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════
+     NAV — copy from components/nav.html
+     (update active class on correct link)
+══════════════════ -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="ARDY Real Estate"/>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html"><b>Home</b></a></li>
+    <li><a href="about.html"><b>About</b></a></li>
+    <li><a href="our-team.html"><b>Our Team</b></a></li>
+
+    <li class="has-drop">
+      <a href="#"><b>Services <span class="arrow">&#9662;</span></b></a>
+      <div class="nav-drop">
+        <a href="off-plan-property-management.html"><b>Off Plan Property Management</b></a>
+        <a href="Property_management.html"><b>Property Management</b></a>
+        <a href="Buying_selling.html"><b>Buying & Selling</b></a>
+        <a href="Leasing_services.html"><b>Leasing Services</b></a>
+        <a href="project-sales-marketing.html"><b>Project Sales & Marketing</b></a>
+        <a href="product-design.html"><b>Product Design</b></a>
+      </div>
+    </li>
+
+    <!-- Blog Added -->
+    <li><a href="blog.html"><b>Blog</b></a></li>
+
+    <li><a href="why-dubai.html"><b>Why to invest in Dubai</b></a></li>
+    <li><a href="contact.html"><b>Contact</b></a></li>
+  </ul>
+
+  <a href="tel:+971505761914" class="nav-phone"><b>+971 50 576 1914</b></a>
+
+  <button class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════════════
+     PAGE HERO
+══════════════════ -->
+<div class="page-hero">
+  <span class="eyebrow">Page Category</span>
+  <h1>Page <em>Title Here</em></h1>
+</div>
+
+<!-- ══════════════════
+     MAIN CONTENT
+══════════════════ -->
+<main>
+  <section>
+    <!-- Your page content here -->
+    <!-- Use .rv, .rv-l, .rv-r classes for scroll animations -->
+    <!-- Use .btn-gold, .btn-brown, .btn-outline-light for buttons -->
+  </section>
+</main>
+
+<!-- ══════════════════
+     FOOTER — copy from components/footer.html
+══════════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="ft-brand">
+      <div class="ft-logo">
+        <img src="logo.png" alt="ARDY Real Estate"/>
+        <span class="ft-logo-name">ARDY Real Estate</span>
+      </div>
+      <p>Professional real estate services, handpicked investment-ready developments, and expert advice to help you succeed in Dubai's property market.</p>
+      <div class="ft-contact">
+        <p>📍 Al Owais Building, Sheikh Zayed Road, Dubai</p>
+        <p>📞 <a href="tel:+971505761914" style="color:inherit">+971 50 576 1914</a></p>
+        <p>📞 <a href="tel:+971528426615" style="color:inherit">+971 52 842 6615</a></p>
+        <p>✉️ <a href="mailto:info@ardyrealestatees.com" style="color:inherit">info@ardyrealestatees.com</a></p>
+      </div>
+      <div class="ft-soc">
+        <a href="https://facebook.com/ardyrealestate" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://instagram.com/ardyrealestate" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/></svg>
+        </a>
+        <a href="https://wa.me/971505761914" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+        <a href="https://twitter.com/ardyrealestate" target="_blank" rel="noopener" aria-label="Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com/@ardyrealestate" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98" fill="var(--brown)"/></svg>
+        </a>
+        <a href="https://linkedin.com/company/ardyrealestate" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://tiktok.com/@ardyrealestate" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.77.11 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 1 0 5.54 6.29l-.01-8.83a8.18 8.18 0 0 0 4.78 1.52V4.55a4.85 4.85 0 0 1-1-.14z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="ft-cl">
+      <span class="ft-h">Quick Links</span>
+      <a href="index.html">Home</a><a href="index.html#about">About</a>
+      <a href="index.html#team">Our Team</a><a href="index.html#properties">Properties</a>
+      <a href="index.html#invest">Why Dubai</a><a href="index.html#contact">Contact</a>
+    </div>
+    <div class="ft-cl">
+      <span class="ft-h">Our Services</span>
+      <a href="index.html#services">Off-Plan Property</a><a href="index.html#services">Property Management</a>
+      <a href="index.html#services">Buying &amp; Selling</a><a href="index.html#services">Leasing Services</a>
+      <a href="index.html#services">Investment Advisory</a><a href="index.html#services">Interior Design</a>
+    </div>
+    <div class="ft-cl">
+      <span class="ft-h">Newsletter</span>
+      <p style="font-size:.75rem;color:rgba(241,236,234,.45);margin-bottom:0;line-height:1.7">Updates on Dubai real estate opportunities and exclusive pre-launch offers.</p>
+      <div class="ft-nl-form">
+        <input type="email" placeholder="Your email address"/>
+        <button type="button" onclick="ftSubscribe(this)">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ARDY Real Estate. All rights reserved. Powered by Majestic Group.</p>
+    <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a> · <a href="#">RERA Licence</a></p>
+  </div>
+</footer>
+
+<!-- ── Shared JS (always include) ── -->
+<script src="js/global.js"></script>
+<!-- ── Hero slider JS — only include on pages with a slider ── -->
+<!-- <script src="js/hero-slider.js"></script> -->
+
+</body>
+</html>

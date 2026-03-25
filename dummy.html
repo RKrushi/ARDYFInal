@@ -1,0 +1,315 @@
+import { useState } from "react";
+
+const steps = [
+  {
+    id: 1,
+    icon: "🖥️",
+    title: "Choose Your Server Type",
+    color: "#00C896",
+    content: {
+      intro: "First, identify your hosting environment:",
+      items: [
+        { label: "Apache (most shared hosting)", desc: "Uses .htaccess files — cPanel, Hostinger, Bluehost, etc." },
+        { label: "Nginx (VPS/Cloud)", desc: "Uses nginx.conf — DigitalOcean, AWS, Linode, etc." },
+        { label: "Node.js / Express", desc: "Uses route middleware in your app" },
+        { label: "Folder Method (any server)", desc: "No config needed — works everywhere" },
+      ],
+      tip: "💡 Not sure? Most shared hosting uses Apache."
+    }
+  },
+  {
+    id: 2,
+    icon: "📁",
+    title: "Set Up Your File Structure",
+    color: "#4F8EF7",
+    content: {
+      intro: "Create your website files like this:",
+      code: `your-website/
+├── .htaccess          ← Apache config
+├── index.html         → website.com/
+├── about.html         → website.com/about
+├── services.html      → website.com/services
+├── contact.html       → website.com/contact
+└── blog.html          → website.com/blog`,
+      tip: "💡 Alternatively use the folder method (Step 6) — no .htaccess needed."
+    }
+  },
+  {
+    id: 3,
+    icon: "⚙️",
+    title: "Create .htaccess File (Apache)",
+    color: "#FF6B6B",
+    content: {
+      intro: "In your website root folder, create a file named exactly: .htaccess",
+      code: `RewriteEngine On
+
+# Redirect old .html URLs → clean URLs (SEO 301)
+RewriteCond %{THE_REQUEST} \\s/([^.]+)\\.html
+RewriteRule ^ /%1 [R=301,L]
+
+RewriteCond %{THE_REQUEST} \\s/([^.]+)\\.php
+RewriteRule ^ /%1 [R=301,L]
+
+# Serve .html file when clean URL is accessed
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^\\.]+)$ $1.html [L]
+
+# Serve .php file when clean URL is accessed
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^\\.]+)$ $1.php [L]`,
+      tip: "⚠️ The file name starts with a dot. On Windows, name it .htaccess. (with a trailing dot) then save."
+    }
+  },
+  {
+    id: 4,
+    icon: "🔗",
+    title: "Update All Your Links",
+    color: "#FFB347",
+    content: {
+      intro: "Change every link in your HTML files:",
+      before: `<!-- ❌ OLD — Don't use these -->
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="contact.php">Contact</a>
+<a href="blog.html">Blog</a>`,
+      after: `<!-- ✅ NEW — Use clean URLs -->
+<a href="/about">About</a>
+<a href="/services">Services</a>
+<a href="/contact">Contact</a>
+<a href="/blog">Blog</a>`,
+      tip: "💡 Use leading slash (/) so links work from any page depth."
+    }
+  },
+  {
+    id: 5,
+    icon: "🌐",
+    title: "Nginx Config (VPS/Cloud Servers)",
+    color: "#9B59B6",
+    content: {
+      intro: "If using Nginx, edit your site config (usually /etc/nginx/sites-available/yoursite):",
+      code: `server {
+    listen 80;
+    server_name yoursite.com www.yoursite.com;
+    root /var/www/html;
+    index index.html;
+
+    # Remove .html extension
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+
+    # 301 Redirect .html → clean URL
+    rewrite ^(/.+)\\.html$ $1 permanent;
+}`,
+      cmd: "sudo nginx -t && sudo systemctl reload nginx",
+      tip: "💡 Run the command above to test and reload Nginx after editing."
+    }
+  },
+  {
+    id: 6,
+    icon: "📂",
+    title: "Folder Method (Works Everywhere!)",
+    color: "#1ABC9C",
+    content: {
+      intro: "The easiest method — no server config needed at all:",
+      code: `your-website/
+├── index.html             → website.com/
+├── about/
+│   └── index.html         → website.com/about
+├── services/
+│   └── index.html         → website.com/services
+├── contact/
+│   └── index.html         → website.com/contact
+└── blog/
+    └── index.html         → website.com/blog`,
+      tip: "✅ This works on GitHub Pages, Netlify, Vercel, Apache, Nginx — everything! Used by Apple & Stripe."
+    }
+  },
+  {
+    id: 7,
+    icon: "🧪",
+    title: "Test Your URLs",
+    color: "#E74C3C",
+    content: {
+      intro: "After setup, test these in your browser:",
+      checks: [
+        { url: "website.com/about", expect: "✅ Page loads correctly" },
+        { url: "website.com/about.html", expect: "✅ Redirects → /about (301)" },
+        { url: "website.com/contact", expect: "✅ Page loads correctly" },
+        { url: "website.com/services", expect: "✅ Page loads correctly" },
+      ],
+      tip: "🔍 Use browser DevTools (F12 → Network tab) to verify 301 redirects are happening."
+    }
+  },
+  {
+    id: 8,
+    icon: "🚀",
+    title: "Bonus SEO Optimizations",
+    color: "#F39C12",
+    content: {
+      intro: "Add these to your HTML <head> for even better SEO:",
+      code: `<!-- Canonical URL — prevents duplicate content -->
+<link rel="canonical" href="https://yoursite.com/about" />
+
+<!-- Open Graph — for social sharing -->
+<meta property="og:url" content="https://yoursite.com/about" />
+<meta property="og:title" content="About Us | YourSite" />
+
+<!-- Sitemap entry example (sitemap.xml) -->
+<url>
+  <loc>https://yoursite.com/about</loc>
+  <priority>0.8</priority>
+</url>`,
+      tip: "📈 Submit your sitemap.xml to Google Search Console after launch."
+    }
+  }
+];
+
+export default function SEOGuide() {
+  const [active, setActive] = useState(0);
+  const [copied, setCopied] = useState(false);
+
+  const step = steps[active];
+
+  const copyCode = (text) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div style={{ fontFamily: "'Courier New', monospace", background: "#0D1117", minHeight: "100vh", color: "#E6EDF3", padding: "24px 16px" }}>
+      <div style={{ maxWidth: 860, margin: "0 auto" }}>
+
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ fontSize: 13, letterSpacing: 4, color: "#58A6FF", marginBottom: 8, textTransform: "uppercase" }}>Complete Guide</div>
+          <h1 style={{ fontSize: "clamp(22px, 4vw, 36px)", fontWeight: 700, margin: 0, color: "#fff" }}>
+            Professional SEO-Friendly URLs
+          </h1>
+          <p style={{ color: "#8B949E", marginTop: 8, fontSize: 14 }}>
+            8 steps · Apache · Nginx · Node.js · Folder Method
+          </p>
+        </div>
+
+        {/* Step Nav */}
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center", marginBottom: 28 }}>
+          {steps.map((s, i) => (
+            <button key={s.id} onClick={() => setActive(i)} style={{
+              background: active === i ? s.color : "#161B22",
+              color: active === i ? "#000" : "#8B949E",
+              border: `1px solid ${active === i ? s.color : "#30363D"}`,
+              borderRadius: 8, padding: "6px 14px", cursor: "pointer",
+              fontFamily: "inherit", fontSize: 13, fontWeight: active === i ? 700 : 400,
+              transition: "all 0.2s"
+            }}>
+              {s.icon} {s.id}
+            </button>
+          ))}
+        </div>
+
+        {/* Main Card */}
+        <div style={{ background: "#161B22", border: `1px solid ${step.color}40`, borderRadius: 14, overflow: "hidden" }}>
+
+          {/* Card Header */}
+          <div style={{ background: `${step.color}18`, borderBottom: `1px solid ${step.color}30`, padding: "20px 24px", display: "flex", alignItems: "center", gap: 14 }}>
+            <div style={{ fontSize: 32 }}>{step.icon}</div>
+            <div>
+              <div style={{ fontSize: 11, color: step.color, letterSpacing: 3, textTransform: "uppercase", marginBottom: 2 }}>Step {step.id} of {steps.length}</div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: "#fff" }}>{step.title}</div>
+            </div>
+          </div>
+
+          <div style={{ padding: "24px" }}>
+            <p style={{ color: "#8B949E", marginTop: 0, marginBottom: 20, fontSize: 14 }}>{step.content.intro}</p>
+
+            {/* Bullet items */}
+            {step.content.items && (
+              <div style={{ display: "grid", gap: 10, marginBottom: 20 }}>
+                {step.content.items.map((item, i) => (
+                  <div key={i} style={{ background: "#0D1117", border: "1px solid #30363D", borderRadius: 8, padding: "12px 16px", display: "flex", gap: 12, alignItems: "flex-start" }}>
+                    <div style={{ color: step.color, marginTop: 2 }}>▶</div>
+                    <div>
+                      <div style={{ color: "#E6EDF3", fontWeight: 600, fontSize: 14 }}>{item.label}</div>
+                      <div style={{ color: "#8B949E", fontSize: 13, marginTop: 2 }}>{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Code block */}
+            {step.content.code && (
+              <div style={{ position: "relative", marginBottom: 16 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#0D1117", padding: "8px 14px", borderRadius: "8px 8px 0 0", border: "1px solid #30363D", borderBottom: "none" }}>
+                  <span style={{ color: "#58A6FF", fontSize: 12 }}>code</span>
+                  <button onClick={() => copyCode(step.content.code)} style={{ background: "none", border: `1px solid ${step.color}60`, color: step.color, borderRadius: 5, padding: "3px 10px", cursor: "pointer", fontFamily: "inherit", fontSize: 11 }}>
+                    {copied ? "✅ Copied!" : "📋 Copy"}
+                  </button>
+                </div>
+                <pre style={{ background: "#0D1117", border: "1px solid #30363D", borderRadius: "0 0 8px 8px", padding: 16, margin: 0, overflowX: "auto", fontSize: 12, lineHeight: 1.7, color: "#79C0FF", whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
+                  {step.content.code}
+                </pre>
+              </div>
+            )}
+
+            {/* Before/After */}
+            {step.content.before && (
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
+                <div>
+                  <div style={{ color: "#FF6B6B", fontSize: 12, marginBottom: 6 }}>❌ BEFORE</div>
+                  <pre style={{ background: "#0D1117", border: "1px solid #FF6B6B30", borderRadius: 8, padding: 14, margin: 0, fontSize: 12, color: "#FF6B6B", overflowX: "auto", whiteSpace: "pre-wrap" }}>{step.content.before}</pre>
+                </div>
+                <div>
+                  <div style={{ color: "#00C896", fontSize: 12, marginBottom: 6 }}>✅ AFTER</div>
+                  <pre style={{ background: "#0D1117", border: "1px solid #00C89630", borderRadius: 8, padding: 14, margin: 0, fontSize: 12, color: "#00C896", overflowX: "auto", whiteSpace: "pre-wrap" }}>{step.content.after}</pre>
+                </div>
+              </div>
+            )}
+
+            {/* Test Checks */}
+            {step.content.checks && (
+              <div style={{ display: "grid", gap: 8, marginBottom: 16 }}>
+                {step.content.checks.map((c, i) => (
+                  <div key={i} style={{ background: "#0D1117", border: "1px solid #30363D", borderRadius: 8, padding: "10px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
+                    <code style={{ color: "#79C0FF", fontSize: 13 }}>{c.url}</code>
+                    <span style={{ color: "#00C896", fontSize: 12 }}>{c.expect}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Terminal command */}
+            {step.content.cmd && (
+              <div style={{ background: "#000", border: "1px solid #30363D", borderRadius: 8, padding: "12px 16px", marginBottom: 16, display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ color: "#00C896" }}>$</span>
+                <code style={{ color: "#E6EDF3", fontSize: 13 }}>{step.content.cmd}</code>
+              </div>
+            )}
+
+            {/* Tip */}
+            <div style={{ background: `${step.color}12`, border: `1px solid ${step.color}30`, borderRadius: 8, padding: "12px 16px", fontSize: 13, color: step.color }}>
+              {step.content.tip}
+            </div>
+          </div>
+        </div>
+
+        {/* Nav Buttons */}
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 20 }}>
+          <button onClick={() => setActive(Math.max(0, active - 1))} disabled={active === 0}
+            style={{ background: active === 0 ? "#161B22" : "#21262D", border: "1px solid #30363D", color: active === 0 ? "#484F58" : "#E6EDF3", borderRadius: 8, padding: "10px 20px", cursor: active === 0 ? "default" : "pointer", fontFamily: "inherit", fontSize: 13 }}>
+            ← Previous
+          </button>
+          <span style={{ color: "#484F58", fontSize: 13, alignSelf: "center" }}>{active + 1} / {steps.length}</span>
+          <button onClick={() => setActive(Math.min(steps.length - 1, active + 1))} disabled={active === steps.length - 1}
+            style={{ background: active === steps.length - 1 ? "#161B22" : step.color, border: "none", color: active === steps.length - 1 ? "#484F58" : "#000", borderRadius: 8, padding: "10px 20px", cursor: active === steps.length - 1 ? "default" : "pointer", fontFamily: "inherit", fontSize: 13, fontWeight: 700 }}>
+            Next →
+          </button>
+        </div>
+
+      </div>
+    </div>
+  );
+}

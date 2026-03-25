@@ -1,0 +1,34 @@
+RewriteEngine On
+RewriteBase /final/ardy/
+Options +FollowSymLinks
+
+# Don't rewrite PHP files that handle POST requests
+RewriteCond %{REQUEST_URI} ^/final/ardy/send-mail-smtp\.php$ [OR]
+RewriteCond %{REQUEST_URI} ^/final/ardy/send-mail\.php$ [OR]
+RewriteCond %{REQUEST_URI} ^/final/ardy/admin-panel\.php$ [OR]
+RewriteCond %{REQUEST_URI} ^/final/ardy/verify-database\.php$ [OR]
+RewriteCond %{REQUEST_URI} ^/final/ardy/test-.*\.php$
+RewriteRule .* - [L]
+
+# Force redirect .html to clean URL (301 permanent)
+RewriteCond %{THE_REQUEST} \s/final/ardy/([^.]+)\.html
+RewriteRule ^ /final/ardy/%1 [R=301,L]
+
+# Force redirect .php to clean URL (but only for pages, not handlers)
+RewriteCond %{THE_REQUEST} \s/final/ardy/([^.]+)\.php
+RewriteCond %{REQUEST_URI} !send-mail
+RewriteCond %{REQUEST_URI} !admin-panel
+RewriteCond %{REQUEST_URI} !verify-database
+RewriteCond %{REQUEST_URI} !test-
+RewriteRule ^ /final/ardy/%1 [R=301,L]
+
+# Serve .html file for clean URL
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# Serve .php file for clean URL (but exclude handlers)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [NC,L]

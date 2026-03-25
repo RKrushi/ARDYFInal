@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full 3D Animated Website with Three.js + Tools</title>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.167.1/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.12/dist/lenis.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; overflow-x: hidden; background: #000; color: white; }
+        #container3d { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; }
+        .section { height: 100vh; display: flex; align-items: center; justify-content: center; font-size: 3rem; scroll-snap-align: start; }
+        #hero { background: linear-gradient(45deg, #1a1a2e, #16213e); }
+        #about { background: #0f3460; }
+        #projects { background: #e94560; }
+        nav { position: fixed; top: 20px; right: 20px; z-index: 100; }
+        nav a { color: white; text-decoration: none; margin: 0 10px; opacity: 0.7; transition: opacity 0.3s; }
+        nav a:hover { opacity: 1; }
+    </style>
+</head>
+<body>
+    <canvas id="container3d"></canvas>
+    
+    <nav>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+    </nav>
+    
+    <section id="hero" class="section">
+        <div>Hero Section<br><small>Scroll for 3D Magic</small></div>
+    </section>
+    <section id="about" class="section">
+        <div>About Me<br><small>Interactive Layers</small></div>
+    </section>
+    <section id="projects" class="section">
+        <div>Projects<br><small>Shader Distortions</small></div>
+    </section>
+
+    <script type="module">
+        // Core Three.js Setup [1][4]
+        const container = document.getElementById('container3d');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: container, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Lighting [1]
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(1, 1, 1);
+        scene.add(directionalLight);
+
+        // Particles Background (Simple 3D Stars) [4][6]
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 5000;
+        const posArray = new Float32Array(particlesCount * 3);
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({ size: 0.005, color: 0xffffff });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // Layered Planes for Depth Illusion (Torus-like geometry) [1][video]
+        const planes = [];
+        for (let i = 0; i < 3; i++) {
+            const geometry = new THREE.TorusGeometry(2, 0.5, 16, 100); // Torus for "toricka jomiert" effect
+            const material = new THREE.MeshBasicMaterial({ 
+                color: new THREE.Color().setHSL(0.6 + i * 0.1, 0.7, 0.5),
+                transparent: true,
+                opacity: 0.3 + i * 0.2,
+                wireframe: i === 0 // Wireframe on first for visual pop
+            });
+            const plane = new THREE.Mesh(geometry, material);
+            plane.position.z = -2 - i * 1.5;
+            plane.rotation.x = Math.PI / 2;
+            scene.add(plane);
+            planes.push(plane);
+        }
+
+        camera.position.z = 5;
+
+        // GSAP for Scroll Animations ("houlaer.js" -> GSAP ScrollTrigger-like) [1][2]
+        gsap.registerPlugin();
+        gsap.to(particlesMesh.rotation, { y: Math.PI * 2, duration: 20, repeat: -1, ease: "none" });
+
+        // Lenis Smooth Scroll ("piniya.js" -> Lenis/Scroll pinning) [related to smooth scroll in 3D tuts]
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        function raf(time) {
+            lenis.raf(time);
+            renderer.render(scene, camera);
+            requestAnimationFrame(raf);
+        }
+        lenis.on('scroll', ({ scroll }) => {
+            // Scroll-based depth parallax [1]
+            planes.forEach((plane, i) => {
+                gsap.to(plane.position, { 
+                    y: scroll * (0.5 + i * 0.2), 
+                    duration: 0.1, 
+                    ease: "power2.out"
+                });
+                plane.rotation.z += 0.005;
+            });
+        });
+        raf();
+
+        // Mouse Interaction (ViewJS-like responsive view) [1][5]
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+            gsap.to(camera.position, { x: mouseX * 0.5, y: mouseY * 0.5, duration: 1.5 });
+        });
+
+        // Resize Handler [1][4]
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Optional: Load GLTF Model (e.g., free torus/3D asset) [1]
+        // const loader = new THREE.GLTFLoader();
+        // loader.load('path/to/model.glb', (gltf) => {
+        //     const model = gltf.scene;
+        //     model.scale.set(0.5, 0.5, 0.5);
+        //     scene.add(model);
+        // });
+
+        console.log('3D Website Loaded: Three.js + GSAP + Lenis');
+    </script>
+</body>
+</html>

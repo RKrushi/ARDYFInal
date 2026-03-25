@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Our Team — ARDY Real Estate Dubai</title>
+<meta name="description" content="Meet the ARDY Real Estate leadership — Director Zakki Khan, Sales Manager Virender Arora, and Founder & CEO Priyank. Expert property consultants serving Dubai investors worldwide."/>
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/nav.css"/>
+<link rel="stylesheet" href="css/footer.css"/>
+<style>
+
+/* ══════════════════════════════════════════════════
+   OUR TEAM PAGE
+══════════════════════════════════════════════════ */
+
+body {
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
+}
+
+em, i {
+  font-style: normal;
+}
+/* ── LEADERSHIP PROFILES ── */
+.dir-wrap { margin-top: 64px; }
+
+.dir-profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--blush);
+}
+
+.dir-profile.alt { background: var(--cream); }
+.dir-profile.alt .dp-body { order: 1; }
+.dir-profile.alt .dp-img  { order: 2; }
+
+/* IMAGE COLUMN — fixed height so all 3 images are the same size */
+.dp-img {
+  height: 560px;
+  overflow: hidden;
+  border-radius: 12px;
+  
+}
+.dp-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform 6s ease;
+}
+.dp-img:hover img { transform: scale(1.04); }
+
+/* BIO COLUMN */
+.dp-body {
+  padding: 60px 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dp-tag {
+  font-size: .56rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  display: block;
+  margin-bottom: 14px;
+}
+.dp-tag span {
+  background: rgba(196,182,147,.18);
+  padding: 3px 10px;
+  border: 1px solid rgba(196,182,147,.3);
+}
+.dp-body h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem,3vw,2.8rem);
+  font-weight: 300;
+  color: var(--brown);
+  margin-bottom: 5px;
+}
+.dp-org {
+  font-size: .72rem;
+  color: var(--taupe);
+  margin-bottom: 14px;
+  font-style: none;
+}
+.dp-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.dp-badge {
+  font-size: .57rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 1px solid rgba(196,182,147,.4);
+  color: var(--taupe);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.dp-body p {
+  font-size: .83rem;
+  line-height: 1.88;
+  color: var(--taupe);
+  margin-bottom: 11px;
+}
+.dp-body p strong { color: var(--brown); }
+.dp-quote {
+  border-left: 2px solid var(--gold);
+  padding: 2px 0 2px 14px;
+  margin: 18px 0;
+  font-family: var(--serif);
+  font-style: none;
+  font-size: .93rem;
+  color: var(--taupe);
+  line-height: 1.65;
+}
+.dp-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(196,182,147,.25);
+}
+.dp-email {
+  font-size: .74rem;
+  color: var(--taupe);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dp-email a { color: var(--taupe); transition: color .3s; }
+.dp-email a:hover { color: var(--gold); }
+.dp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  color: #fff;
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: opacity .3s;
+  text-decoration: none;
+}
+.dp-btn:hover { opacity: .85; }
+.dp-btn-li { background: #0077B5; }
+.dp-btn-wa { background: #25D366; }
+
+@media(max-width:860px){
+  .dir-profile { grid-template-columns: 1fr; }
+  .dir-profile.alt .dp-body { order: unset; }
+  .dir-profile.alt .dp-img  { order: unset; }
+  .dp-img { height: 320px; }
+}
+
+/* ── SERVICES SECTION ── */
+.services-section { background: var(--sand); padding: 80px 5%; }
+.srv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  margin-top: 50px;
+}
+.srv-item { border-top: 2px solid var(--gold); padding-top: 20px; }
+.srv-n {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 300;
+  color: rgba(196,182,147,.35);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.srv-item h4 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--brown);
+}
+.srv-item p { font-size: .8rem; line-height: 1.75; color: var(--taupe); }
+@media(max-width:760px){ .srv-grid{ grid-template-columns:1fr 1fr; } }
+@media(max-width:480px){ .srv-grid{ grid-template-columns:1fr; } }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  position: relative;
+  padding: 80px 5%;
+  text-align: center;
+  overflow: hidden;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cta-bg { position: absolute; inset: 0; z-index: 0; }
+.cta-bg img { width: 100%; height: 100%; object-fit: cover; }
+.cta-ov {
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg,rgba(61,42,35,.82) 0%,rgba(61,42,35,.55) 100%);
+  z-index: 1;
+}
+.cta-inner { position: relative; z-index: 2; max-width: 680px; width: 100%; }
+.cta-eyebrow {
+  font-size: .56rem; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(196,182,147,.7);
+  display: flex; align-items: center; gap: 10px; justify-content: center;
+  margin-bottom: 16px;
+}
+.cta-eyebrow::before,.cta-eyebrow::after { content:''; width:22px; height:1px; background:var(--gold); }
+.cta-inner h2 {
+  font-family: var(--serif); font-size: clamp(1.8rem,3.5vw,3.2rem);
+  font-weight: 300; color: var(--blush); margin-bottom: 14px; line-height: 1.1;
+}
+.cta-inner h2 em { color: var(--gold); }
+.cta-inner p { font-size:.84rem; color:rgba(241,236,234,.72); max-width:520px; margin:0 auto 28px; line-height:1.75; }
+.cta-stats { display:flex; justify-content:center; flex-wrap:wrap; margin-bottom:28px; }
+.cs { padding:12px 28px; border-right:1px solid rgba(196,182,147,.2); text-align:center; }
+.cs:last-child { border-right:none; }
+.cs-n { font-family:var(--serif); font-size:1.9rem; font-weight:500; color:var(--gold); display:block; line-height:1; }
+.cs-l { font-size:.54rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(196,182,147,.6); margin-top:4px; display:block; }
+.cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+/* ── INVEST BAND ── */
+.invest-band {
+  background: var(--brown); padding: 72px 5%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+.ib-left .eyebrow { color: rgba(196,182,147,.55); }
+.ib-left h2 { font-family:var(--serif); font-size:clamp(1.8rem,3.2vw,2.8rem); font-weight:300; color:var(--blush); margin-bottom:14px; line-height:1.1; }
+.ib-left h2 em { color:var(--gold); }
+.ib-left p { font-size:.82rem; line-height:1.8; color:rgba(241,236,234,.65); margin-bottom:28px; }
+.ib-btns { display:flex; gap:12px; flex-wrap:wrap; }
+.ib-right { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.stat-box { padding:28px 20px; border:1px solid rgba(196,182,147,.2); text-align:center; }
+.stat-n { font-family:var(--serif); font-size:2.2rem; font-weight:500; color:var(--gold); display:block; line-height:1; }
+.stat-l { font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(196,182,147,.55); margin-top:6px; display:block; }
+@media(max-width:760px){ .invest-band{ grid-template-columns:1fr; } }
+
+/* ── ACCORDION ── */
+.adv-section { background:var(--cream); padding:80px 5%; }
+.adv-section h2 { font-family:var(--serif); font-size:clamp(2rem,4vw,3.2rem); font-weight:300; color:var(--brown); text-align:center; margin-bottom:8px; }
+.adv-section h2 em { font-style:none; }
+.adv-sub { font-size:.84rem; color:var(--taupe); text-align:center; max-width:540px; margin:0 auto 48px; line-height:1.8; }
+.acc-wrap { max-width:860px; margin:0 auto; display:flex; flex-direction:column; gap:8px; }
+.acc-item { border:1px solid rgba(196,182,147,.28); background:var(--blush); }
+.acc-hd { display:flex; align-items:center; gap:14px; padding:16px 20px; cursor:pointer; user-select:none; transition:background .3s; }
+.acc-hd:hover { background:rgba(196,182,147,.1); }
+.acc-hd.open { background:var(--brown); }
+.acc-hd.open .acc-title { color:var(--blush); }
+.acc-hd.open .acc-desc  { color:rgba(241,236,234,.45); }
+.acc-hd.open .acc-plus  { color:var(--gold); transform:rotate(45deg); }
+.acc-ic { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.82rem; flex-shrink:0; }
+.acc-txt { flex:1; }
+.acc-title { font-size:.82rem; font-weight:600; color:var(--brown); display:block; }
+.acc-desc  { font-size:.69rem; color:var(--taupe); display:block; margin-top:2px; }
+.acc-plus  { font-size:.9rem; color:var(--taupe); flex-shrink:0; transition:transform .3s,color .3s; }
+.acc-bd    { max-height:0; overflow:hidden; transition:max-height .38s ease; }
+.acc-bd.open { max-height:200px; }
+.acc-inner { padding:14px 20px 18px 68px; font-size:.8rem; line-height:1.85; color:var(--taupe); }
+
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="ARDY Real Estate"/>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html"><b>Home</b></a></li>
+    <li><a href="about.html"><b>About</b></a></li>
+    <li><a href="our-team.html"><b>Our Team</b></a></li>
+
+    <li class="has-drop">
+      <a href="#"><b>Services <span class="arrow">&#9662;</span></b></a>
+      <div class="nav-drop">
+        <a href="off-plan-property-management.html"><b>Off Plan Property Management</b></a>
+        <a href="Property_management.html"><b>Property Management</b></a>
+        <a href="Buying_selling.html"><b>Buying & Selling</b></a>
+        <a href="Leasing_services.html"><b>Leasing Services</b></a>
+        <a href="project-sales-marketing.html"><b>Project Sales & Marketing</b></a>
+        <a href="product-design.html"><b>Product Design</b></a>
+      </div>
+    </li>
+
+    <!-- Blog Added -->
+    <li><a href="blog.html"><b>Blog</b></a></li>
+
+    <li><a href="why-dubai.html"><b>Why to invest in Dubai</b></a></li>
+    <li><a href="contact.html"><b>Contact</b></a></li>
+  </ul>
+
+  <a href="tel:+971505761914" class="nav-phone"><b>+971 50 576 1914</b></a>
+
+  <button class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- ══ LEADERSHIP PROFILES ════════════════════════════ -->
+<div class="dir-wrap">
+
+  <!-- PROFILE 1: Zakki Khan — Director | Blush | Image LEFT -->
+  <div class="dir-profile rv">
+    <div class="dp-img rv-l">
+      <img src="images/Zakki Khan.png" alt="Zakki Khan — Director, ARDY Real Estate"/>
+    </div>
+    <div class="dp-body rv-r">
+      <span class="dp-tag"><span>▸ Director</span></span>
+      <h2>Zakki Khan</h2>
+      <p class="dp-org">Director, ARDY Real Estate | Majestic Realties &amp; Webvanna LLC (Dubai)</p>
+      <div class="dp-badges">
+        <span class="dp-badge">🏠 Real Estate Visionary</span>
+        <span class="dp-badge">⏱ 11+ Years Experience</span>
+      </div>
+      <p>Zakki Khan, Director of <strong>ARDY Real Estate</strong>, brings 11+ years of comprehensive expertise in real estate and digital marketing, guiding hundreds of investors toward smart property decisions across India and the UAE.</p>
+      <p>As the driving force behind ARDY Real Estate — the Dubai-based extension of the Majestic Group — he has established the company as a trusted partner for premium real estate investments in the UAE's dynamic property market.</p>
+      <div class="dp-quote">"Our vision is to transform every property investment into a lasting legacy, delivering exceptional opportunities with trust, transparency, and high returns."</div>
+      <div class="dp-bottom">
+        <span class="dp-email">✉ <a href="mailto:zakki@ardyrealestatees.com">zakki@ardyrealestatees.com</a></span>
+        <a href="https://linkedin.com/in/zakkikhan" target="_blank" class="dp-btn dp-btn-li">
+          <svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:#fff"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE 2: Virender Arora — Sales & Leasing Manager | Cream | Image RIGHT -->
+  <div class="dir-profile alt rv">
+    <div class="dp-body rv-l">
+      <span class="dp-tag"><span>▸ Sales &amp; Leasing Manager</span></span>
+      <h2>Virender Arora</h2>
+      <p class="dp-org">Sales &amp; Leasing Manager, ARDY Real Estate Dubai</p>
+      <div class="dp-badges">
+        <span class="dp-badge">🏙 23+ Years UAE Experience</span>
+        <span class="dp-badge">🔑 50+ Properties Managed</span>
+      </div>
+      <p>Virender Arora is a seasoned real estate professional with over <strong>23 years of experience</strong> in the UAE property market. He manages a portfolio of more than 50 properties and is widely respected for his deep market knowledge and strategic expertise.</p>
+      <p>Virender provides trusted, tailored guidance to investors across buying, selling, and leasing — ensuring every decision is aligned with long-term investment growth and maximum returns.</p>
+      <div class="dp-quote">"Strong market knowledge combined with a client-first approach is the foundation of every successful property investment."</div>
+      <div class="dp-bottom">
+        <span class="dp-email">✉ <a href="mailto:info@ardyrealestatees.com">info@ardyrealestatees.com</a></span>
+        <a href="https://wa.me/971505761914" target="_blank" class="dp-btn dp-btn-wa">
+          <svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          WhatsApp Consultation
+        </a>
+      </div>
+    </div>
+    <div class="dp-img rv-r" style="overflow:hidden;">
+  <img src="images/1a49b38e-1292-4f1e-b39e-150f5c0ed50e.jpg" alt="Virender Arora — Sales & Leasing Manager, ARDY Real Estate" style="object-position:center 20%; transform:scale(1.2); transform-origin:center 20%;"/>
+</div>
+  </div>
+
+  <!-- PROFILE 3: Priyank — Founder & CEO | Blush | Image LEFT -->
+  <div class="dir-profile rv">
+    <div class="dp-img rv-l">
+      <img src="images/Priyank.jpg" alt="Priyank — Founder & CEO, ARDY Real Estate"/>
+    </div>
+    <div class="dp-body rv-r">
+      <span class="dp-tag"><span>▸ Founder &amp; CEO</span></span>
+      <h2>Priyank</h2>
+      <p class="dp-org">Founder &amp; Chief Executive Officer, ARDY Real Estate</p>
+      <div class="dp-badges">
+        <span class="dp-badge">🏦 Finance &amp; Banking Background</span>
+        <span class="dp-badge">📈 Strategic Investment Leader</span>
+      </div>
+      <p>Priyank is the visionary Founder and CEO of ARDY Real Estate — a finance-driven leader who has transformed deep banking expertise into a powerful force in the real estate sector. With a strong foundation in <strong>financial structuring, investment strategy, and risk management</strong>, he has built the organisation into a trusted platform for strategic real estate investment and long-term wealth creation.</p>
+      <p>Prior to founding the company, he established a distinguished career in banking, advising high-net-worth individuals, investors, and corporate clients on wealth management, structured finance, and portfolio growth. This shaped his unique approach to real estate — not as a series of transactions, but as a <strong>disciplined, data-driven investment vehicle</strong> designed to generate sustainable value.</p>
+      <div class="dp-quote">"Real estate, when approached with financial discipline and deep market insight, becomes the most powerful vehicle for long-term wealth creation."</div>
+      <div class="dp-bottom">
+        <span class="dp-email">✉ <a href="mailto:info@ardyrealestatees.com">info@ardyrealestatees.com</a></span>
+        <a href="https://linkedin.com/company/ardyrealestate" target="_blank" class="dp-btn dp-btn-li">
+          <svg viewBox="0 0 24 24" style="width:12px;height:12px;fill:#fff"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ PREMIUM SERVICES ═══════════════════════════════ -->
+<section class="services-section rv">
+  <span class="eyebrow">— What We Offer —</span>
+  <h2 class="sec-title">Premium Services for Every Need</h2>
+  <div class="srv-grid">
+    <div class="srv-item rv d1">
+      <div class="srv-n">01</div>
+      <h4>Off-Plan Sales</h4>
+      <p>Exclusive pre-launch access to the UAE's most prestigious off-plan developments from Danube Properties and BNW Realty, with the best prices and payment plans.</p>
+    </div>
+    <div class="srv-item rv d2">
+      <div class="srv-n">02</div>
+      <h4>Property Management</h4>
+      <p>Full-service property management including tenant sourcing, maintenance coordination, financial reporting, and rental yield optimisation for your Dubai portfolio.</p>
+    </div>
+    <div class="srv-item rv d3">
+      <div class="srv-n">03</div>
+      <h4>Buying &amp; Selling</h4>
+      <p>Expert guidance for buyers and sellers in Dubai's secondary market — from property valuation and negotiation to DLD registration and handover management.</p>
+    </div>
+    <div class="srv-item rv d1">
+      <div class="srv-n">04</div>
+      <h4>Leasing Services</h4>
+      <p>Comprehensive leasing solutions for landlords and tenants — tenant screening, contract preparation, rent collection, and ongoing tenancy management.</p>
+    </div>
+    <div class="srv-item rv d2">
+      <div class="srv-n">05</div>
+      <h4>Project Sales &amp; Marketing</h4>
+      <p>End-to-end project sales and marketing services for developers seeking to reach international investors across India, UAE, GCC, and beyond.</p>
+    </div>
+    <div class="srv-item rv d3">
+      <div class="srv-n">06</div>
+      <h4>Product Design</h4>
+      <p>Interior design, fitout, and staging services to maximise the appeal and value of your Dubai property — from initial concept through to final delivery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BAND ═══════════════════════════════════════ -->
+<div class="cta-section">
+  <div class="cta-bg">
+    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1800&q=85" alt="Dubai skyline"/>
+  </div>
+  <div class="cta-ov"></div>
+  <div class="cta-inner rv">
+    <div class="cta-eyebrow">Secure Your Property</div>
+    <h2>Start Your Property Journey</h2>
+    <p>Join thousands of successful investors who have trusted ARDY Real Estate for premium property acquisitions in the world's most dynamic real estate market.</p>
+    <div class="cta-stats">
+      <div class="cs"><span class="cs-n">750+</span><span class="cs-l">Happy Clients</span></div>
+      <div class="cs"><span class="cs-n">98%</span><span class="cs-l">Satisfaction Rate</span></div>
+      <div class="cs"><span class="cs-n">AED 2.5B</span><span class="cs-l">Portfolio Value</span></div>
+    </div>
+    <div class="cta-btns">
+      <a href="contact.html" class="btn-gold-solid">Book Free Consultation</a>
+      <a href="Off_plan_property_management .html" class="btn-outline-light">View All Services</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INVEST BAND ════════════════════════════════════ -->
+<section class="invest-band">
+  <div class="ib-left rv-l">
+    <span class="eyebrow">— Exclusive Dubai Investments —</span>
+    <h2>Ready to Invest in Dubai's Future?</h2>
+    <p>Connect with our team of dedicated property specialists and begin your Dubai investment journey today. We make it simple, secure, and highly rewarding.</p>
+    <div class="ib-btns">
+      <a href="contact.html" class="btn-gold-solid">Book Free Consultation</a>
+      <a href="Off_plan_property_management .html" class="btn-outline-gold">View Off-Plan Projects</a>
+    </div>
+  </div>
+  <div class="ib-right rv-r">
+    <div class="stat-box rv d1"><span class="stat-n">750+</span><span class="stat-l">Happy Clients</span></div>
+    <div class="stat-box rv d2"><span class="stat-n">98%</span><span class="stat-l">Satisfaction Rate</span></div>
+    <div class="stat-box rv d3"><span class="stat-n">AED 2.5B</span><span class="stat-l">Portfolio Value</span></div>
+    <div class="stat-box rv d4"><span class="stat-n">8+</span><span class="stat-l">Years Experience</span></div>
+  </div>
+</section>
+
+<!-- ══ ARDY ADVANTAGE ACCORDION ══════════════════════ -->
+<section class="adv-section">
+  <h2>The ARDY Advantage</h2>
+  <p class="adv-sub">Experience unparalleled service, exclusive opportunities, and expert guidance in Dubai's dynamic real estate market</p>
+  <div class="acc-wrap">
+    <div class="acc-item">
+      <div class="acc-hd open" onclick="toggleAcc(this)">
+        <div class="acc-ic" style="background:#3b82f6">🤝</div>
+        <div class="acc-txt"><span class="acc-title">Exclusive Developer Partnerships</span><span class="acc-desc">Direct partnerships with Danube Properties &amp; BNW Realty for priority access.</span></div>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="acc-bd open"><div class="acc-inner">Direct, exclusive partnerships with Danube Properties and BNW Realty giving you first access to the best UAE developments and pricing — always ahead of general public launches.</div></div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-ic" style="background:#f97316">🚀</div>
+        <div class="acc-txt"><span class="acc-title">Pre-Launch Investment Opportunities</span><span class="acc-desc">Get first access to new developments before public release.</span></div>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="acc-bd"><div class="acc-inner">Be the first to access new Dubai developments before public launch, securing the best units at pre-launch pricing with maximum potential for capital appreciation and rental yields.</div></div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-ic" style="background:#22c55e">💳</div>
+        <div class="acc-txt"><span class="acc-title">Flexible Payment Plans</span><span class="acc-desc">Customised payment solutions tailored to your financial goals.</span></div>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="acc-bd"><div class="acc-inner">Tailored payment plan structures designed around your budget and investment timeline, making property ownership accessible and financially manageable for every investor.</div></div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-ic" style="background:#ef4444">🏠</div>
+        <div class="acc-txt"><span class="acc-title">Fully Furnished Luxury Residences</span><span class="acc-desc">Move-in ready properties with premium interior designs.</span></div>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="acc-bd"><div class="acc-inner">Access to fully furnished luxury residences with premium interior finishes, ready for immediate occupation or rental to command the highest achievable yields.</div></div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-ic" style="background:#6366f1">👥</div>
+        <div class="acc-txt"><span class="acc-title">Dedicated Client Support Team</span><span class="acc-desc">Personalised service from Dubai &amp; Ras Al Khaimah experts.</span></div>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="acc-bd"><div class="acc-inner">Your personal dedicated team of specialists available throughout your entire investment journey — from first enquiry right through to handover, ensuring a seamless experience.</div></div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-ic" style="background:#14b8a6">📊</div>
+        <div class="acc-txt"><span class="acc-title">Market Insight &amp; Analytics</span><span class="acc-desc">Data-driven investment advice for maximum returns.</span></div>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="acc-bd"><div class="acc-inner">Real-time market data, ROI analysis, and growth forecasts tailored to Dubai's property landscape — helping you make confident, data-backed investment decisions.</div></div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-ic" style="background:#64748b">⚖️</div>
+        <div class="acc-txt"><span class="acc-title">Legal Compliance &amp; Security</span><span class="acc-desc">100% legally compliant transactions with full documentation.</span></div>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="acc-bd"><div class="acc-inner">Full compliance with all Dubai Land Department regulations, RERA requirements, and UAE property law. Complete legal documentation and title deed support throughout.</div></div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-hd" onclick="toggleAcc(this)">
+        <div class="acc-ic" style="background:#f59e0b">📞</div>
+        <div class="acc-txt"><span class="acc-title">24/7 Customer Support</span><span class="acc-desc">Round the clock assistance in multiple languages.</span></div>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="acc-bd"><div class="acc-inner">Our multilingual support team is available 24/7 to answer your questions, resolve issues, and provide guidance whenever you need it most.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="ft-brand">
+      <div class="ft-logo">
+        <img src="images/logo.png" alt="ARDY Real Estate" onerror="this.style.display='none'"/>
+        <span class="ft-logo-name">ARDY Real Estate</span>
+      </div>
+      <p>Professional real estate services, handpicked investment-ready developments, and expert advice to help you succeed in Dubai's property market.</p>
+      <div class="ft-contact">
+        <p>📍 Al Owais Building, Sheikh Zayed Road, Dubai</p>
+        <p>📞 <a href="tel:+971505761914" style="color:inherit">+971 50 576 1914</a></p>
+        <p>📞 <a href="tel:+971528426615" style="color:inherit">+971 52 842 6615</a></p>
+        <p>✉️ <a href="mailto:info@ardyrealestatees.com" style="color:inherit">info@ardyrealestatees.com</a></p>
+      </div>
+      <div class="ft-soc" aria-label="Social media links">
+        <a href="https://facebook.com/ardyrealestate"  target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://instagram.com/ardyrealestate" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" style="fill:var(--brown)"/><circle cx="17.5" cy="6.5" r="1" style="fill:var(--brown)"/></svg></a>
+        <a href="https://wa.me/971505761914"           target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+        <a href="https://twitter.com/ardyrealestate"   target="_blank" rel="noopener" aria-label="Twitter / X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://youtube.com/@ardyrealestate"  target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" style="fill:var(--brown)"/></svg></a>
+        <a href="https://linkedin.com/company/ardyrealestate" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+       
+      </div>
+    </div>
+    <div class="ft-cl">
+      <span class="ft-h">Quick Links</span>
+      <a href="index.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="our-team.html">Our Team</a>
+      <a href="why-dubai.html">Why Dubai</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="ft-cl">
+      <span class="ft-h">Our Services</span>
+      <a href="Off_plan_property_management .html">Off-Plan Property</a>
+      <a href="Property_managemen.html">Property Management</a>
+      <a href="buying_selling.html">Buying &amp; Selling</a>
+      <a href="Leasing_services.html">Leasing Services</a>
+      <a href="project-sales-marketing.html">Project Sales</a>
+      <a href="product-design.html">Product Design</a>
+    </div>
+    <div class="ft-cl">
+      <span class="ft-h">Newsletter</span>
+      <p style="font-size:.75rem;color:rgba(241,236,234,.45);margin-bottom:0;line-height:1.7">Updates on Dubai real estate opportunities and exclusive pre-launch offers.</p>
+      <div class="ft-nl-form">
+        <input type="email" placeholder="Your email address"/>
+        <button type="button" onclick="ftSubscribe(this)">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ARDY Real Estate. All rights reserved. Powered by Majestic Group.</p>
+    <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a> · <a href="#">RERA Licence</a></p>
+  </div>
+</footer>
+
+<script src="js/global.js"></script>
+<script>
+(function(){
+  window.toggleAcc = function(hd){
+    var bd = hd.nextElementSibling;
+    var isOpen = hd.classList.contains('open');
+    document.querySelectorAll('.acc-hd.open').forEach(function(h){
+      h.classList.remove('open');
+      h.nextElementSibling.classList.remove('open');
+    });
+    if(!isOpen){ hd.classList.add('open'); bd.classList.add('open'); }
+  };
+})();
+</script>
+</body>
+</html>

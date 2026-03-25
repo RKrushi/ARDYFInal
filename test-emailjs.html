@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailJS Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 0;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .info code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        button {
+            background: #3D2A23;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #2a1c17;
+        }
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        .result.show {
+            display: block;
+        }
+        .result.success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+        .result.error {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+        }
+        #console {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        #console div {
+            margin: 5px 0;
+        }
+        .log-info { color: #4ec9b0; }
+        .log-success { color: #4caf50; }
+        .log-error { color: #f44336; }
+        .log-warn { color: #ff9800; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>🧪 EmailJS Test</h1>
+        
+        <div class="info">
+            <strong>Current Configuration:</strong><br>
+            Public Key: <code>7a4aDkyYMIvgI1bPF</code><br>
+            Service ID: <code>service_cwwgojb</code><br>
+            Template ID: <code>template_87xqsqe</code><br>
+            To: <code>rskontam1000@gmail.com</code>
+        </div>
+
+        <p>Click the button below to send a test email. Check the console below for detailed debugging information.</p>
+
+        <button id="testBtn" onclick="sendTestEmail()">Send Test Email</button>
+
+        <div id="result" class="result"></div>
+
+        <div id="console"></div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        // Configuration
+        const CONFIG = {
+            publicKey: '7a4aDkyYMIvgI1bPF',
+            serviceID: 'service_cwwgojb',
+            templateID: 'template_87xqsqe',
+            toEmail: 'rskontam1000@gmail.com'
+        };
+
+        // Console logger
+        function log(message, type = 'info') {
+            const consoleDiv = document.getElementById('console');
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-' + type;
+            logEntry.textContent = new Date().toLocaleTimeString() + ' - ' + message;
+            consoleDiv.appendChild(logEntry);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            
+            // Also log to browser console
+            console.log(message);
+        }
+
+        function showResult(message, isSuccess) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result show ' + (isSuccess ? 'success' : 'error');
+            resultDiv.innerHTML = message;
+        }
+
+        // Initialize EmailJS
+        log('Initializing EmailJS...', 'info');
+        
+        if (typeof emailjs === 'undefined') {
+            log('ERROR: EmailJS library not loaded!', 'error');
+            showResult('❌ EmailJS library failed to load. Check your internet connection.', false);
+        } else {
+            emailjs.init(CONFIG.publicKey);
+            log('EmailJS initialized successfully', 'success');
+        }
+
+        // Send test email
+        function sendTestEmail() {
+            const btn = document.getElementById('testBtn');
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            
+            document.getElementById('result').className = 'result';
+            
+            log('Starting test email...', 'info');
+            log('Service ID: ' + CONFIG.serviceID, 'info');
+            log('Template ID: ' + CONFIG.templateID, 'info');
+            
+            const testData = {
+                from_name: 'Test User',
+                from_email: 'test@example.com',
+                phone: '+1234567890',
+                service_interest: 'Testing',
+                budget_range: 'Test Budget',
+                message: 'This is a test email from the EmailJS test page.',
+                to_email: CONFIG.toEmail,
+                submission_date: new Date().toLocaleString()
+            };
+            
+            log('Sending email with data: ' + JSON.stringify(testData, null, 2), 'info');
+            
+            emailjs.send(CONFIG.serviceID, CONFIG.templateID, testData)
+                .then(function(response) {
+                    log('✅ SUCCESS! Email sent successfully', 'success');
+                    log('Response status: ' + response.status, 'success');
+                    log('Response text: ' + response.text, 'success');
+                    
+                    showResult('✅ <strong>Success!</strong> Test email sent to ' + CONFIG.toEmail + '. Check your inbox!', true);
+                    
+                    btn.disabled = false;
+                    btn.textContent = 'Send Another Test';
+                })
+                .catch(function(error) {
+                    log('❌ ERROR: Failed to send email', 'error');
+                    log('Error object: ' + JSON.stringify(error, null, 2), 'error');
+                    
+                    let errorMsg = '❌ <strong>Failed to send:</strong><br>';
+                    
+                    if (error.status === 400) {
+                        errorMsg += 'Bad Request - Check template configuration';
+                        log('Error 400: Bad Request - Template may be misconfigured', 'error');
+                    } else if (error.status === 403) {
+                        errorMsg += 'Access Denied - Check Public Key and Service ID';
+                        log('Error 403: Access Denied - Verify credentials', 'error');
+                    } else if (error.status === 404) {
+                        errorMsg += 'Not Found - Template ID may be incorrect';
+                        log('Error 404: Template not found', 'error');
+                    } else if (error.status === 422) {
+                        errorMsg += 'Unprocessable Entity - Template variables may not match';
+                        log('Error 422: Template variables mismatch', 'error');
+                    } else {
+                        errorMsg += error.text || 'Unknown error';
+                        log('Error: ' + (error.text || 'Unknown'), 'error');
+                    }
+                    
+                    showResult(errorMsg, false);
+                    
+                    btn.disabled = false;
+                    btn.textContent = 'Try Again';
+                });
+        }
+    </script>
+</body>
+</html>
