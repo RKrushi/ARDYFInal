@@ -1,0 +1,46 @@
+<!-- ═══════════════════════════════════════════════════
+     ARDY REAL ESTATE — REUSABLE NAV COMPONENT
+     nav.html — paste this at the top of every page <body>
+
+     To mark the active link, add class="active" to the
+     relevant <a> tag, or let nav.js handle it automatically.
+═══════════════════════════════════════════════════ -->
+
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="ARDY Real Estate"/>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html"><b>Home</b></a></li>
+    <li><a href="about.html"><b>About</b></a></li>
+    <li><a href="our-team.html"><b>Our Team</b></a></li>
+
+    <li class="has-drop">
+      <a href="#"><b>Services <span class="arrow">&#9662;</span></b></a>
+      <div class="nav-drop">
+        <a href="off-plan-property-management.html"><b>Off Plan Property Management</b></a>
+        <a href="Property_management.html"><b>Property Management</b></a>
+        <a href="Buying_selling.html"><b>Buying & Selling</b></a>
+        <a href="Leasing_services.html"><b>Leasing Services</b></a>
+        <a href="project-sales-marketing.html"><b>Project Sales & Marketing</b></a>
+        <a href="product-design.html"><b>Product Design</b></a>
+      </div>
+    </li>
+
+    <!-- Blog Added -->
+    <li><a href="blog.html"><b>Blog</b></a></li>
+
+    <li><a href="why-dubai.html"><b>Why to invest in Dubai</b></a></li>
+    <li><a href="contact.html"><b>Contact</b></a></li>
+  </ul>
+
+  <a href="tel:+971505761914" class="nav-phone"><b>+971 50 576 1914</b></a>
+
+  <button class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Page body padding helper — add this class to your first section/hero -->
+<!-- <section style="padding-top:56px"> ... </section> -->

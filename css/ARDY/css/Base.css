@@ -1,0 +1,109 @@
+/* ═══════════════════════════════════════════════════
+   ARDY REAL ESTATE — BASE STYLES
+   Import this on every page
+═══════════════════════════════════════════════════ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Raleway:wght@300;400;500;600&display=swap');
+
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--sans);background:var(--blush);color:var(--brown);overflow-x:hidden;line-height:1.6}
+img{display:block;max-width:100%;height:auto;object-fit:cover}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button,input,select,textarea{font-family:var(--sans)}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--blush)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ── CSS VARIABLES ── */
+:root{
+  --blush:    #f1ecea;
+  --brown:    #3d2a23;
+  --gold:     #c4b693;
+  --brown-rgb:rgb(61,42,35);
+  --taupe:    rgb(99,88,65);
+  --gold-rgb: rgb(196,182,147);
+  --cream:    #faf7f3;
+  --sand:     #ece5d8;
+  --sand2:    #e2d8c6;
+  --white:    #ffffff;
+  --serif:    'Cormorant Garamond',Georgia,serif;
+  --sans:     'Raleway',sans-serif;
+  --ease:     cubic-bezier(.4,0,.2,1);
+  --t:        .38s;
+}
+
+/* ── SECTION BASE ── */
+section{padding:80px 5%}
+.eyebrow{
+  font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--taupe);display:block;margin-bottom:14px;
+}
+.sec-title{
+  font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);
+  font-weight:300;line-height:1.1;color:var(--brown);margin-bottom:14px;
+}
+.sec-title em{font-style:italic}
+.sec-desc{font-size:.85rem;line-height:1.8;color:var(--taupe);max-width:560px}
+
+/* ── BUTTONS ── */
+.btn-gold{
+  display:inline-block;padding:13px 30px;
+  background:var(--gold);color:var(--brown);
+  font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+  border:none;cursor:pointer;transition:background var(--t),transform var(--t);
+}
+.btn-gold:hover{background:#b8a578;transform:translateY(-2px)}
+
+.btn-outline-light{
+  display:inline-block;padding:12px 28px;
+  border:1px solid rgba(196,182,147,.6);color:var(--blush);
+  font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;
+  cursor:pointer;transition:border-color var(--t),background var(--t);
+}
+.btn-outline-light:hover{border-color:var(--gold);background:rgba(196,182,147,.1)}
+
+.btn-brown{
+  display:inline-block;padding:13px 28px;
+  background:var(--brown);color:var(--blush);
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  border:none;cursor:pointer;transition:background var(--t),transform var(--t);
+}
+.btn-brown:hover{background:#2a1c17;transform:translateY(-2px)}
+
+.btn-gold-solid{
+  display:inline-block;padding:12px 28px;background:var(--gold);color:var(--brown);
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+  cursor:pointer;transition:background var(--t);border:none;
+}
+.btn-gold-solid:hover{background:#b8a578}
+
+.btn-outline-gold{
+  display:inline-block;padding:11px 26px;border:1px solid rgba(196,182,147,.5);color:var(--blush);
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  cursor:pointer;transition:border-color var(--t),background var(--t);
+}
+.btn-outline-gold:hover{border-color:var(--gold);background:rgba(196,182,147,.08)}
+
+.btn-mini{
+  display:inline-block;padding:7px 16px;
+  border:1px solid var(--gold);color:var(--brown);font-size:.6rem;
+  letter-spacing:.14em;text-transform:uppercase;
+  transition:background var(--t),color var(--t);
+}
+.btn-mini:hover{background:var(--gold);color:var(--brown)}
+
+/* ── SCROLL REVEAL ── */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv-l{opacity:0;transform:translateX(-30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv-l.in{opacity:1;transform:translateX(0)}
+.rv-r{opacity:0;transform:translateX(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv-r.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.40s}

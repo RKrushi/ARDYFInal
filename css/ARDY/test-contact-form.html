@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test Contact Form</title>
+</head>
+<body>
+<h1>Contact Form Test</h1>
+<button onclick="testForm()">Test Form Submission</button>
+<div id="result" style="margin-top:20px; padding:10px; background:#f0f0f0;"></div>
+
+<script>
+function testForm() {
+  var result = document.getElementById('result');
+  result.innerHTML = '⏳ Testing...';
+  
+  var formData = new FormData();
+  formData.append('name', 'Test User');
+  formData.append('email', 'test@example.com');
+  formData.append('phone', '+971501234567');
+  formData.append('message', 'This is a test message');
+  formData.append('botcheck', '');
+  
+  console.log('Sending request to send-mail-smtp.php...');
+  
+  fetch('send-mail-smtp.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(function(response) {
+    console.log('Response status:', response.status);
+    console.log('Response headers:', response.headers);
+    return response.text();
+  })
+  .then(function(text) {
+    console.log('Response text:', text);
+    result.innerHTML = '<strong>Response received:</strong><br><pre>' + text + '</pre>';
+    try {
+      var data = JSON.parse(text);
+      if (data.success) {
+        result.style.background = '#d4edda';
+        result.innerHTML = '✅ SUCCESS! Email sent: ' + JSON.stringify(data, null, 2);
+      } else {
+        result.style.background = '#f8d7da';
+        result.innerHTML = '❌ FAILED: ' + data.message;
+      }
+    } catch(e) {
+      result.style.background = '#fff3cd';
+      result.innerHTML = '⚠️ Invalid JSON response:<br><pre>' + text + '</pre>';
+    }
+  })
+  .catch(function(error) {
+    console.error('Fetch error:', error);
+    result.style.background = '#f8d7da';
+    result.innerHTML = '❌ Network Error: ' + error.message;
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+/* ═══════════════════════════════════════════════════
+   ARDY REAL ESTATE — FOOTER STYLES
+   footer.css — import on every page
+═══════════════════════════════════════════════════ */
+
+.footer{background:var(--brown)}
+
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1.4fr;
+  gap:40px;padding:60px 5%;
+}
+
+/* Brand column */
+.ft-logo{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:16px;
+}
+.ft-logo img{height:42px;width:auto;object-fit:contain;filter:brightness(0) invert(1) opacity(.85)}
+.ft-logo-name{
+  font-family:var(--serif);font-size:1.15rem;font-weight:500;
+  color:var(--blush);letter-spacing:.04em;
+}
+.ft-brand>p{
+  font-size:.78rem;line-height:1.8;
+  color:rgba(241,236,234,.5);max-width:260px;margin-bottom:16px;
+}
+.ft-contact p{font-size:.75rem;line-height:2;color:rgba(241,236,234,.5)}
+
+/* Column links */
+.ft-cl{display:flex;flex-direction:column;gap:0}
+.ft-h{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
+.ft-cl a{
+  font-size:.78rem;color:rgba(241,236,234,.5);
+  padding:5px 0;border-bottom:1px solid rgba(196,182,147,.08);
+  transition:color var(--t);
+}
+.ft-cl a:hover{color:var(--gold)}
+
+/* Newsletter */
+.ft-nl-form{display:flex;margin-top:12px}
+.ft-nl-form input{
+  flex:1;padding:10px 12px;
+  background:rgba(196,182,147,.08);border:1px solid rgba(196,182,147,.2);
+  border-right:none;color:var(--blush);font-size:.75rem;outline:none;
+}
+.ft-nl-form input::placeholder{color:rgba(241,236,234,.35)}
+.ft-nl-form button{
+  padding:10px 16px;background:var(--gold);color:var(--brown);
+  border:none;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:background var(--t);font-weight:600;white-space:nowrap;
+}
+.ft-nl-form button:hover{background:#b8a578}
+
+/* Social icons row */
+.ft-soc{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+.ft-soc a{
+  width:36px;height:36px;
+  border:1px solid rgba(196,182,147,.2);
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color var(--t),background var(--t),color var(--t);
+  color:rgba(241,236,234,.5);
+}
+.ft-soc a:hover{border-color:var(--gold);background:var(--gold);color:var(--brown)}
+.ft-soc a svg{width:15px;height:15px;fill:currentColor}
+
+/* Bottom bar */
+.footer-bottom{
+  border-top:1px solid rgba(196,182,147,.12);
+  padding:20px 5%;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;
+}
+.footer-bottom p{font-size:.68rem;color:rgba(241,236,234,.3)}
+.footer-bottom a{color:rgba(241,236,234,.4);transition:color var(--t)}
+.footer-bottom a:hover{color:var(--gold)}
+
+/* ── Responsive ── */
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.footer-top{grid-template-columns:1fr}}

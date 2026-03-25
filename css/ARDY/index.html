@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ARDY Real Estate — Dubai's Most Prestigious Developments</title>
+<meta name="description" content="ARDY Real Estate — Premium Dubai property investments. Exclusive off-plan projects from Danube Properties & BNW Realty. Powered by Majestic Group."/>
+
+<!-- ── Shared external stylesheets ── -->
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/nav.css"/>
+<link rel="stylesheet" href="css/footer.css"/>
+
+<!-- ── Page-specific styles ── -->
+<style>
+
+/* ── HERO ── */
+.hero{position:relative;height:100vh;min-height:580px;overflow:hidden;padding-top:56px}
+.slides{position:absolute;inset:0;z-index:0}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s var(--ease)}
+.slide.active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(61,42,35,.68) 0%,rgba(61,42,35,.28) 55%,transparent 100%)}
+.hero-content{position:absolute;bottom:0;left:0;right:0;z-index:2;display:grid;grid-template-columns:1fr 380px;align-items:end;padding:0 5% 52px;gap:32px}
+.hero-text{color:var(--blush)}
+.hero-eyebrow{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+.hero-h1{font-family:var(--serif);font-size:clamp(2.8rem,6vw,5.2rem);font-weight:300;line-height:1.02;letter-spacing:-.01em;margin-bottom:18px}
+.hero-h1 em{font-style:none;color:var(--white)}
+.hero-sub{font-size:.92rem;line-height:1.85;color:rgba(241,236,234,.8);max-width:420px;margin-bottom:28px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-card{background:rgba(241,236,234,.96);padding:28px 26px;border-top:3px solid var(--gold);box-shadow:0 20px 60px rgba(61,42,35,.25)}
+.hc-title{font-family:var(--serif);font-size:1.15rem;font-weight:500;color:var(--brown);margin-bottom:2px}
+.hc-sub{font-size:.68rem;color:var(--taupe);letter-spacing:.08em;margin-bottom:18px}
+.hc-form{display:flex;flex-direction:column;gap:9px}
+.hc-form input,.hc-form select{width:100%;padding:10px 13px;border:1px solid rgba(196,182,147,.4);background:var(--blush);font-size:.78rem;color:var(--brown);outline:none;transition:border-color var(--t)}
+.hc-form input:focus,.hc-form select:focus{border-color:var(--gold)}
+.hc-form input::placeholder{color:var(--taupe)}
+.hc-btn{width:100%;padding:12px;background:var(--brown);color:var(--blush);border:none;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:background var(--t);margin-top:4px}
+.hc-btn:hover{background:#2a1c17}
+.hc-note{font-size:.62rem;color:var(--taupe);text-align:center;margin-top:6px}
+.slide-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:8px}
+.dot{width:20px;height:2px;background:rgba(196,182,147,.4);cursor:pointer;transition:background var(--t),width var(--t)}
+.dot.active{background:var(--gold);width:36px}
+.slide-counter{position:absolute;bottom:22px;right:5%;z-index:3;font-family:var(--serif);font-size:.75rem;color:rgba(196,182,147,.7);letter-spacing:.1em}
+@media(max-width:860px){.hero-content{grid-template-columns:1fr;padding:0 5% 60px}.hero-card{display:none}}
+
+/* ── ABOUT STRIP ── */
+.about-strip{background:var(--blush);padding:56px 5%;text-align:center;border-bottom:1px solid rgba(196,182,147,.25)}
+.about-strip .eyebrow{justify-content:center;display:flex;align-items:center;gap:10px}
+.about-strip .eyebrow::before,.about-strip .eyebrow::after{content:'';width:30px;height:1px;background:var(--gold)}
+.as-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.5rem);font-weight:300;color:var(--brown);line-height:1.2;margin-bottom:8px}
+.as-title em{font-style:none;color:var(--taupe)}
+.as-sub{font-size:.8rem;color:var(--taupe);letter-spacing:.06em}
+
+/* ── WHO WE ARE ── */
+.who{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:520px;background:var(--cream);padding:0}
+.who-img{overflow:hidden}
+.who-img img{width:100%;height:100%;min-height:460px;object-fit:cover;transition:transform 6s var(--ease)}
+.who-img:hover img{transform:scale(1.04)}
+.who-body{padding:70px 6% 60px;display:flex;flex-direction:column;justify-content:center;background:var(--blush)}
+.who-body .eyebrow{margin-bottom:18px}
+.who-body .sec-title{font-size:clamp(1.4rem,2.8vw,2.3rem);margin-bottom:20px}
+.who-body p{font-size:.85rem;line-height:1.85;color:var(--taupe);margin-bottom:14px}
+.who-body p strong{color:var(--brown)}
+.who-cards{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.who-card{padding:20px 22px;border:1px solid rgba(196,182,147,.3);background:rgba(196,182,147,.08);display:flex;gap:14px;align-items:flex-start}
+.who-card-ic{font-size:1.3rem;flex-shrink:0;padding-top:2px}
+.who-card h4{font-family:var(--serif);font-size:1.05rem;font-weight:500;margin-bottom:4px}
+.who-card p{font-size:.8rem;color:var(--taupe);margin:0}
+.who-accent{background:var(--brown)!important;border-color:var(--brown)!important}
+.who-accent h4,.who-accent p{color:rgba(241,236,234,.85)!important}
+@media(max-width:860px){.who{grid-template-columns:1fr}.who-img img{min-height:280px}}
+
+/* ── PARTNERS ── */
+.partners{background:var(--sand);text-align:center}
+.partners-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+.p-card{background:var(--blush);border:1px solid rgba(196,182,147,.3);padding:34px 30px;text-align:left;transition:box-shadow var(--t),transform var(--t)}
+.p-card:hover{box-shadow:0 14px 48px rgba(61,42,35,.1);transform:translateY(-3px)}
+.p-ic{font-size:1.8rem;margin-bottom:16px}
+.p-tag{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.p-card h3{font-family:var(--serif);font-size:1.3rem;font-weight:500;margin-bottom:10px}
+.p-card p{font-size:.82rem;line-height:1.8;color:var(--taupe)}
+@media(max-width:640px){.partners-grid{grid-template-columns:1fr}}
+
+/* ── WHY CHOOSE ── */
+.why{background:var(--blush);text-align:center}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px}
+.why-item{padding:32px 24px;background:rgba(196,182,147,.12);border:1px solid rgba(196,182,147,.2);transition:background var(--t),border-color var(--t)}
+.why-item:hover{background:rgba(196,182,147,.22);border-color:rgba(196,182,147,.5)}
+.why-ic{font-size:1.6rem;display:block;margin-bottom:14px}
+.why-item h4{font-family:var(--serif);font-size:1rem;margin-bottom:8px}
+.why-item p{font-size:.8rem;line-height:1.7;color:var(--taupe)}
+@media(max-width:700px){.why-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.why-grid{grid-template-columns:1fr}}
+
+/* ── DARK BAND ── */
+.dark-band{background:var(--brown);color:var(--blush);padding:80px 5%;text-align:center}
+.dark-band .eyebrow{color:rgba(196,182,147,.6);display:flex;align-items:center;gap:10px;justify-content:center}
+.dark-band .eyebrow::before,.dark-band .eyebrow::after{content:'';width:24px;height:1px;background:var(--gold)}
+.dark-band h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:300;color:var(--blush);margin-bottom:14px;line-height:1.1}
+.dark-band h2 em{color:var(--gold)}
+.dark-band p{font-size:.85rem;color:rgba(241,236,234,.7);max-width:600px;margin:0 auto}
+
+/* ── PROPERTIES ── */
+.properties{background:var(--cream);padding:0}
+.prop-hero{display:grid;grid-template-columns:1fr 1fr;min-height:500px}
+.prop-hero:nth-child(even) .ph-img{order:2}
+.prop-hero:nth-child(even) .ph-body{order:1}
+.ph-img{position:relative;overflow:hidden}
+.ph-img img{width:100%;height:100%;min-height:440px;object-fit:cover;transition:transform 6s var(--ease)}
+.ph-img:hover img{transform:scale(1.04)}
+.ph-badge{position:absolute;top:18px;left:18px;background:var(--gold);color:var(--brown);padding:5px 14px;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.ph-badge-r{position:absolute;top:18px;right:18px;background:rgba(61,42,35,.8);color:var(--blush);padding:5px 14px;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(4px)}
+.ph-body{padding:56px 5%;display:flex;flex-direction:column;justify-content:center;background:var(--blush)}
+.ph-body .eyebrow{margin-bottom:12px}
+.ph-type{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.ph-body h3{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;margin-bottom:8px}
+.ph-loc{font-size:.78rem;color:var(--taupe);margin-bottom:20px}
+.ph-specs{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;padding:18px 0;border-top:1px solid rgba(196,182,147,.3);border-bottom:1px solid rgba(196,182,147,.3)}
+.ph-spec{display:flex;justify-content:space-between;align-items:center}
+.ph-spec-l{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe)}
+.ph-spec-v{font-family:var(--serif);font-size:1rem;font-weight:500;color:var(--brown)}
+.ph-price{font-size:.78rem;color:var(--taupe);margin-bottom:6px}
+.ph-price strong{font-family:var(--serif);font-size:1.6rem;color:var(--brown);display:block}
+.ph-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.ph-tag{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border:1px solid rgba(196,182,147,.4);color:var(--taupe)}
+@media(max-width:860px){.prop-hero{grid-template-columns:1fr}.ph-img img{min-height:280px}.prop-hero:nth-child(even) .ph-img,.prop-hero:nth-child(even) .ph-body{order:unset}}
+
+/* ── MINI GRID ── */
+.mini-grid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--sand);padding:40px 5%;gap:20px}
+.mini-card{background:var(--blush);border:1px solid rgba(196,182,147,.3);overflow:hidden;transition:box-shadow var(--t),transform var(--t)}
+.mini-card:hover{box-shadow:0 12px 40px rgba(61,42,35,.12);transform:translateY(-3px)}
+.mc-img{height:160px;overflow:hidden;position:relative}
+.mc-img img{width:100%;height:100%;object-fit:cover;transition:transform 5s var(--ease)}
+.mini-card:hover .mc-img img{transform:scale(1.06)}
+.mc-badge{position:absolute;top:10px;left:10px;background:var(--gold);color:var(--brown);padding:3px 10px;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.mc-body{padding:16px 18px}
+.mc-type{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.mc-body h4{font-family:var(--serif);font-size:1.05rem;font-weight:500;margin-bottom:4px}
+.mc-loc{font-size:.72rem;color:var(--taupe);margin-bottom:10px}
+.mc-price{font-family:var(--serif);font-size:1.1rem;color:var(--brown);font-weight:500;margin-bottom:12px}
+@media(max-width:1000px){.mini-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.mini-grid{grid-template-columns:1fr}}
+
+/* ── QUOTE WRAP ── */
+.quote-wrap{position:relative;overflow:hidden;min-height:460px;display:flex;align-items:center}
+.quote-bg{position:absolute;inset:0}
+.quote-bg img{width:100%;height:100%;object-fit:cover}
+.quote-bg-ov{position:absolute;inset:0;background:linear-gradient(120deg,rgba(61,42,35,.78) 0%,rgba(61,42,35,.45) 100%)}
+.quote-inner{position:relative;z-index:2;max-width:740px;margin:0 auto;padding:60px 5%;text-align:center}
+.quote-mark{font-family:var(--serif);font-size:5rem;color:var(--gold);line-height:.5;display:block;margin-bottom:20px;opacity:.6}
+blockquote{font-family:var(--serif);font-size:clamp(1.3rem,2.5vw,2rem);font-style:none;font-weight:300;color:var(--blush);line-height:1.55}
+.quote-attr{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,182,147,.75);margin-top:24px}
+
+/* ── INVEST BAND ── */
+.invest-band{background:var(--brown);padding:72px 5%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.ib-left .eyebrow{color:rgba(196,182,147,.55)}
+.ib-left h2{font-family:var(--serif);font-size:clamp(1.8rem,3.2vw,2.8rem);font-weight:300;color:var(--blush);margin-bottom:14px;line-height:1.1}
+.ib-left h2 em{color:var(--gold)}
+.ib-left p{font-size:.82rem;line-height:1.8;color:rgba(241,236,234,.65);margin-bottom:28px}
+.ib-btns{display:flex;gap:12px;flex-wrap:wrap}
+.ib-right{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat-box{padding:28px 22px;border:1px solid rgba(196,182,147,.2);text-align:center}
+.stat-n{font-family:'Arial',
+ sans-serif !important;
+ font-variant-numeric: lining-nums tabular-nums !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;font-size:2.2rem;font-weight:500;color:var(--gold);display:block;line-height:1}
+.stat-l{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,182,147,.55);margin-top:6px;display:block}
+@media(max-width:760px){.invest-band{grid-template-columns:1fr}}
+
+/* ── TESTIMONIALS ── */
+.testi-section{background:var(--sand);text-align:center}
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px;max-width:900px;margin-left:auto;margin-right:auto}
+.t-card{background:var(--blush);padding:32px 28px;text-align:left;border:1px solid rgba(196,182,147,.25);transition:box-shadow var(--t),transform var(--t);position:relative}
+.t-card:hover{box-shadow:0 12px 40px rgba(61,42,35,.1);transform:translateY(-3px)}
+.t-card::before{content:'"';position:absolute;top:12px;right:20px;font-family:var(--serif);font-size:5rem;color:var(--gold);opacity:.12;line-height:1}
+.t-top{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.t-av{width:44px;height:44px;border-radius:50%;background:var(--brown);color:var(--blush);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1rem;font-weight:500;flex-shrink:0}
+.t-name{font-size:.88rem;font-weight:600;color:var(--brown)}
+.t-loc{font-size:.7rem;color:var(--taupe);margin-top:2px}
+.t-stars{color:var(--gold);font-size:.82rem;letter-spacing:2px;display:block;margin-top:2px}
+.t-card > p{font-family:var(--serif);font-style:none;font-size:.95rem;line-height:1.75;color:var(--taupe)}
+.t-nav{display:flex;gap:10px;justify-content:center;margin-top:32px}
+.t-btn{width:40px;height:40px;border:1px solid rgba(196,182,147,.4);background:none;font-size:1rem;color:var(--brown);cursor:pointer;transition:background var(--t),border-color var(--t),color var(--t)}
+.t-btn:hover{background:var(--brown);color:var(--blush);border-color:var(--brown)}
+@media(max-width:640px){.testi-grid{grid-template-columns:1fr}}
+
+/* ── AGENT ── */
+.agent-section{display:grid;grid-template-columns:1fr 1fr;background:var(--blush);padding:0;min-height:460px}
+.ag-img{overflow:hidden}
+.ag-img img{width:100%;height:100%;min-height:400px;object-fit:cover;object-position:top}
+.ag-body{padding:60px 6%;display:flex;flex-direction:column;justify-content:center}
+.ag-body .eyebrow{margin-bottom:16px}
+.ag-body h3{font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,2.1rem);font-weight:300;margin-bottom:14px}
+.ag-body p{font-size:.82rem;line-height:1.8;color:var(--taupe);margin-bottom:18px}
+.ag-name{font-family:var(--serif);font-size:1.2rem;font-style:none;font-weight:500;color:var(--brown);margin-top:14px}
+.ag-role{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe);margin-top:4px}
+.ag-sig{font-family:var(--serif);font-style:none;font-size:1.4rem;color:var(--taupe);margin-top:12px;opacity:.6}
+@media(max-width:760px){.agent-section{grid-template-columns:1fr}.ag-img img{min-height:260px}}
+
+/* ── SERVICES ── */
+.services-section{background:var(--sand);padding:80px 5%}
+.srv-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:50px}
+.srv-item{border-top:2px solid var(--gold);padding-top:20px}
+.srv-n{font-family:var(--serif);font-size:3rem;font-weight:300;color:rgba(196,182,147,.35);line-height:1;margin-bottom:10px}
+.srv-item h4{font-family:var(--serif);font-size:1.15rem;font-weight:500;margin-bottom:8px}
+.srv-item p{font-size:.8rem;line-height:1.75;color:var(--taupe)}
+@media(max-width:760px){.srv-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.srv-grid{grid-template-columns:1fr}}
+
+/* ── CONTACT ── */
+.contact-section{background:var(--blush);padding:80px 5%}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:50px}
+.ci-item{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
+.ci-ic{font-size:1.1rem;flex-shrink:0;padding-top:2px}
+.ci-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-bottom:4px}
+.ci-item p,.ci-item a{font-size:.82rem;line-height:1.7;color:var(--taupe)}
+.ci-item a:hover{color:var(--gold)}
+.soc-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.soc-pill{padding:8px 18px;border:1px solid rgba(196,182,147,.4);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);transition:background var(--t),border-color var(--t),color var(--t);cursor:pointer}
+.soc-pill:hover{background:var(--brown);border-color:var(--brown);color:var(--blush)}
+.cf-form{display:flex;flex-direction:column;gap:12px}
+.cf-form input,.cf-form select,.cf-form textarea{width:100%;padding:12px 15px;border:1px solid rgba(196,182,147,.35);background:rgba(196,182,147,.08);font-size:.82rem;color:var(--brown);outline:none;transition:border-color var(--t);resize:vertical}
+.cf-form input:focus,.cf-form select:focus,.cf-form textarea:focus{border-color:var(--gold)}
+.cf-form input::placeholder,.cf-form textarea::placeholder{color:var(--taupe)}
+@media(max-width:760px){.contact-grid{grid-template-columns:1fr}}
+
+/* ── Fix: prevent italic on all text ── */
+*, *::before, *::after {
+  font-style: normal !important;
+}
+
+/* ── Fix: use normal numeric rendering ── */
+.stat-n,
+.ph-price strong,
+.mc-price,
+.ph-spec-v,
+.hero-h1,
+.as-title,
+.sec-title,
+.who-body .sec-title,
+.dark-band h2,
+.ib-left h2{
+ font-family: 'Arial', sans-serif !important;
+  font-variant-numeric: lining-nums tabular-nums !important;
+  font-feature-settings: "lnum" 1, "tnum" 1 !important;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAV  (shared — sourced from css/nav.css + js/global.js)
+══════════════════════════════════════════ -->
+ <div data-component="nav" data-root="../"></div>
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="ARDY Real Estate"/>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html"><b>Home</b></a></li>
+    <li><a href="about.html"><b>About</b></a></li>
+    <li><a href="our-team.html"><b>Our Team</b></a></li>
+
+    <li class="has-drop">
+      <a href="#"><b>Services <span class="arrow">&#9662;</span></b></a>
+      <div class="nav-drop">
+        <a href="off-plan-property-management.html"><b>Off Plan Property Management</b></a>
+        <a href="Property_management.html"><b>Property Management</b></a>
+        <a href="Buying_selling.html"><b>Buying & Selling</b></a>
+        <a href="Leasing_services.html"><b>Leasing Services</b></a>
+        <a href="project-sales-marketing.html"><b>Project Sales & Marketing</b></a>
+        <a href="product-design.html"><b>Product Design</b></a>
+      </div>
+    </li>
+
+    <!-- Blog Added -->
+    
+
+    <li><a href="why-dubai.html"><b>Why to invest in Dubai</b></a></li>
+    <li><a href="contact.html"><b>Contact</b></a></li>
+  </ul>
+
+  <a href="tel:+971505761914" class="nav-phone"><b>+971 50 576 1914</b></a>
+
+  <button class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HERO SLIDER
+══════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="slides" id="slidesWrap">
+    <div class="slide active">
+      <img src="images/img1.jpg" alt="Downtown Dubai skyline"/>
+      <div class="slide-overlay"></div>
+    </div>
+    <div class="slide">
+      <img src="images/img2.jpg" alt="Luxury apartment interior"/>
+      <div class="slide-overlay"></div>
+    </div>
+    <div class="slide">
+      <img src="images/img3.jpg" alt="Dubai waterfront villa"/>
+      <div class="slide-overlay"></div>
+    </div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Premium Properties — Downtown Dubai</p>
+      <h1 class="hero-h1">Find Your<br/>Dream Property</em></h1>
+      <p class="hero-sub">Discover exclusive properties in Dubai's most prestigious locations. Your perfect investment opportunity awaits — powered by Majestic Group.</p>
+      <div class="hero-btns">
+        <a href="#properties" class="btn-gold">View Properties</a>
+        <a href="#contact" class="btn-outline-light">Free Consultation</a>
+      </div>
+    </div>
+   
+  <div class="slide-dots" id="slideDots"></div>
+  <div class="slide-counter" id="slideCounter">01 / 03</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ABOUT STRIP
+══════════════════════════════════════════ -->
+<div class="about-strip" id="about">
+  <span class="eyebrow">— About ARDY Real Estate —</span>
+  <h2 class="as-title">Connecting You to Dubai's Most Prestigious</em> Developments</h2>
+  <p class="as-sub">Powered by Majestic Group · Your trusted partner in premium Dubai real estate investments</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     WHO WE ARE
+══════════════════════════════════════════ -->
+<div class="who">
+  <div class="who-img rv-l">
+    <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=900&q=85" alt="Dubai property specialists"/>
+  </div>
+  <div class="who-body rv-r">
+    <span class="eyebrow">About Us</span>
+    <h2 class="sec-title">At ARDY, we are passionate about growth</em></h2>
+    <p>ARDY Real Estate is the Dubai-based extension of the Majestic Group, bringing years of expertise in real estate and investment to the UAE's dynamic property market.</p>
+    <p>We represent <strong>Danube Properties</strong> and <strong>BNW Realty</strong> — providing investors and homeowners with guidance always supported by transparency, expertise, and trust.</p>
+    <div class="who-cards">
+      <div class="who-card rv d1">
+        <span class="who-card-ic">🏢</span>
+        <div><h4>Who We Are</h4><p>A full-service Dubai real estate agency with expertise across residential, commercial, and waterfront properties.</p></div>
+      </div>
+      <div class="who-card who-accent rv d2">
+        <span class="who-card-ic">🎯</span>
+        <div><h4>Our Mission</h4><p>Deliver exceptional property opportunities with trust, transparency, and high returns — helping clients make smart, long-term investments.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     DEVELOPER PARTNERS
+══════════════════════════════════════════ -->
+<section class="partners rv" id="partners">
+  <span class="eyebrow" style="text-align:center;display:block">Our Developer Partners</span>
+  <h2 class="sec-title" style="text-align:center">Trusted Partnerships</h2>
+  <div class="partners-grid">
+    <div class="p-card rv d1">
+      <div class="p-ic">🏗️</div>
+      <p class="p-tag">Leading UAE Developer</p>
+      <h3>Danube Properties</h3>
+      <p>A leading developer known for innovation, premium design, and flexible payment plans. Our collaboration focuses exclusively on Dubai-based residential and commercial projects with unmatched quality.</p>
+    </div>
+    <div class="p-card rv d2">
+      <div class="p-ic">🏆</div>
+      <p class="p-tag">Luxury Waterfront Specialists</p>
+      <h3>BNW Realty</h3>
+      <p>Specialists in luxury waterfront residences and lifestyle communities across Dubai and Ras Al Khaimah. Premium design, strategic locations, and lifestyle-focused developments built to exceed expectations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     WHY CHOOSE ARDY
+══════════════════════════════════════════ -->
+<section class="why rv">
+  <span class="eyebrow" style="text-align:center;display:flex;align-items:center;gap:10px;justify-content:center">
+    <span style="width:24px;height:1px;background:var(--gold);display:inline-block"></span>
+    Why Choose ARDY Real Estate
+    <span style="width:24px;height:1px;background:var(--gold);display:inline-block"></span>
+  </span>
+  <h2 class="sec-title" style="text-align:center;margin-bottom:0">Six Reasons to Trust Us</h2>
+  <div class="why-grid">
+    <div class="why-item rv d1"><span class="why-ic">🤝</span><h4>Exclusive Partnerships</h4><p>Direct access to Danube Properties &amp; BNW Realty inventory.</p></div>
+    <div class="why-item rv d2"><span class="why-ic">🚀</span><h4>Pre-Launch Access</h4><p>Be first with pre-launch offers and premium off-plan units.</p></div>
+    <div class="why-item rv d3"><span class="why-ic">💳</span><h4>Flexible Plans</h4><p>Flexible payment plans and limited-time exclusive promotions.</p></div>
+    <div class="why-item rv d1"><span class="why-ic">🏠</span><h4>Luxury Residences</h4><p>Fully furnished luxury residences with premium finishes.</p></div>
+    <div class="why-item rv d2"><span class="why-ic">📊</span><h4>Market Support</h4><p>Dedicated Dubai &amp; RAK marketing and investment support.</p></div>
+    <div class="why-item rv d3"><span class="why-ic">📋</span><h4>Expert Guidance</h4><p>Personalised investment advice from certified professionals.</p></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     DARK BAND
+══════════════════════════════════════════ -->
+<div class="dark-band rv">
+  <span class="eyebrow">— Premium Dubai Properties —</span>
+  <h2>Discover Your Dream Home</em> in Dubai</h2>
+  <p>ARDY Real Estate brings you exclusive properties in Dubai's most sought-after locations. With flexible payment plans and hand-picked developments, we make your real estate journey seamless and rewarding.</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FEATURED PROPERTIES
+══════════════════════════════════════════ -->
+<div class="properties" id="properties">
+
+  <!-- Aqua Maya -->
+  <div class="prop-hero">
+    <div class="ph-img rv-l">
+      <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=1000&q=85" alt="Aqua Maya"/>
+      <span class="ph-badge">Featured</span>
+      <span class="ph-badge-r">BNW Payment Plan</span>
+    </div>
+    <div class="ph-body rv-r">
+      <span class="eyebrow">Waterfront Luxury · Ras Al Khaimah</span>
+      <p class="ph-type">🏊 Luxury Residence</p>
+      <h3>Aqua Maya</h3>
+      <p class="ph-loc">📍 Al Marjan Island, Ras Al Khaimah</p>
+      <div class="ph-specs">
+        <div class="ph-spec"><span class="ph-spec-l">Bedrooms</span><span class="ph-spec-v">4 – 6 BR</span></div>
+        <div class="ph-spec"><span class="ph-spec-l">Area</span><span class="ph-spec-v">Up to 5,121 sqft</span></div>
+        <div class="ph-spec"><span class="ph-spec-l">Handover</span><span class="ph-spec-v">Q4 2027</span></div>
+      </div>
+      <p class="ph-price">Starting from<strong>AED 1.7M</strong></p>
+      <div class="ph-tags"><span class="ph-tag">Exclusive Pre-Launch</span><span class="ph-tag">Early Purchase</span></div>
+      <a href="#contact" class="btn-brown">View Details ↗</a>
+    </div>
+  </div>
+
+  <!-- Aspirez by Danube -->
+  <div class="prop-hero" style="background:var(--sand)">
+    <div class="ph-body rv-l" style="background:var(--sand)">
+      <span class="eyebrow">Premium Home &amp; Office · Dubai</span>
+      <p class="ph-type">🏢 Mixed-Use Development</p>
+      <h3>Aspirez by Danube</h3>
+      <p class="ph-loc">📍 Dubai Sports City, Dubai</p>
+      <div class="ph-specs">
+        <div class="ph-spec"><span class="ph-spec-l">Units</span><span class="ph-spec-v">280+ Studios</span></div>
+        <div class="ph-spec"><span class="ph-spec-l">Configuration</span><span class="ph-spec-v">Flexible</span></div>
+        <div class="ph-spec"><span class="ph-spec-l">Handover</span><span class="ph-spec-v">Q1 2028</span></div>
+      </div>
+      <p class="ph-price">Starting from<strong>AED 850K</strong></p>
+      <div class="ph-tags"><span class="ph-tag">Exclusive Pre-Launch</span><span class="ph-tag">4.5 New Payment Plan</span></div>
+      <a href="#contact" class="btn-brown">View Details ↗</a>
+    </div>
+    <div class="ph-img rv-r">
+      <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1000&q=85" alt="Aspirez by Danube"/>
+      <span class="ph-badge">Featured</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- 4-Column Mini Grid -->
+<div class="mini-grid">
+  <div class="mini-card rv d1">
+    <div class="mc-img"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&q=75" alt="Ocean Pearl"/><span class="mc-badge">BNW</span></div>
+    <div class="mc-body"><p class="mc-type">🏢 Luxury Apartment</p><h4>Ocean Pearl</h4><p class="mc-loc">📍 Al Marjan Island, RAK</p><p class="mc-price">AED 3.9M</p><a href="#contact" class="btn-mini">View ↗</a></div>
+  </div>
+  <div class="mini-card rv d2">
+    <div class="mc-img"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=500&q=75" alt="Sky Gardens"/><span class="mc-badge">Danube</span></div>
+    <div class="mc-body"><p class="mc-type">🏢 Premium Residence</p><h4>Sky Gardens</h4><p class="mc-loc">📍 Downtown Dubai</p><p class="mc-price">AED 1.8M</p><a href="#contact" class="btn-mini">View ↗</a></div>
+  </div>
+  <div class="mini-card rv d3">
+    <div class="mc-img"><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=500&q=75" alt="Desert Oasis"/><span class="mc-badge">Danube</span></div>
+    <div class="mc-body"><p class="mc-type">🌴 Villa Community</p><h4>Desert Oasis</h4><p class="mc-loc">📍 Dubai South, Expo City</p><p class="mc-price">AED 4.2M</p><a href="#contact" class="btn-mini">View ↗</a></div>
+  </div>
+  <div class="mini-card rv d4">
+    <div class="mc-img"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500&q=75" alt="Palm Residences"/><span class="mc-badge">BNW</span></div>
+    <div class="mc-body"><p class="mc-type">🌊 Waterfront</p><h4>Palm Residences</h4><p class="mc-loc">📍 Palm Jumeirah, Dubai</p><p class="mc-price">AED 6.1M</p><a href="#contact" class="btn-mini">View ↗</a></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     QUOTE
+══════════════════════════════════════════ -->
+<div class="quote-wrap">
+  <div class="quote-bg"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=85" alt="Dubai luxury lifestyle"/></div>
+  <div class="quote-bg-ov"></div>
+  <div class="quote-inner rv">
+    <span class="quote-mark">"</span>
+    <blockquote>Immerse yourself in the seamless fusion of luxury architecture and modern design, where each home tells a story of its own.</blockquote>
+    <p class="quote-attr">— ARDY Real Estate · Dubai</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     INVEST STATS BAND
+══════════════════════════════════════════ -->
+<section class="invest-band" id="invest">
+  <div class="ib-left rv-l">
+    <span class="eyebrow">— Exclusive Dubai Investments —</span>
+    <h2>Ready to Invest in Dubai's Future?</em></h2>
+    <p>Join thousands of satisfied investors who have trusted ARDY Real Estate for premium property investments in Dubai's most sought-after locations. Start your journey today.</p>
+    <div class="ib-btns">
+      <a href="#contact" class="btn-gold-solid">Book Free Consultation</a>
+      <a href="#properties" class="btn-outline-gold">View All Properties</a>
+    </div>
+  </div>
+  <div class="ib-right rv-r">
+    <div class="stat-box"><span class="stat-n">136+</span><span class="stat-l">Happy Clients</span></div>
+    <div class="stat-box"><span class="stat-n">98%</span><span class="stat-l">Satisfaction Rate</span></div>
+    <div class="stat-box"><span class="stat-n">AED 2.5B</span><span class="stat-l">Portfolio Value</span></div>
+    <div class="stat-box"><span class="stat-n">8+</span><span class="stat-l">Years Experience</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════ -->
+<section class="testi-section" id="reviews">
+  <span class="eyebrow" style="text-align:center;display:flex;align-items:center;gap:10px;justify-content:center">
+    <span style="width:24px;height:1px;background:var(--gold);display:inline-block"></span>
+    Client Success Stories
+    <span style="width:24px;height:1px;background:var(--gold);display:inline-block"></span>
+  </span>
+  <h2 class="sec-title" style="text-align:center">500+ Happy Clients<br/>From India &amp; Dubai</h2>
+  <p class="sec-desc" style="text-align:center;margin:0 auto">Discover why investors from across India and UAE trust ARDY Real Estate for their premium property investments.</p>
+  <div class="testi-grid" id="testiGrid">
+    <div class="t-card rv d1">
+      <div class="t-top"><div class="t-av">MK</div><div><p class="t-name">Mohammad Khan</p><p class="t-loc">Business Bay, Dubai</p><span class="t-stars">★★★★★</span></div></div>
+      <p>"The investment potential in Aqua Maya is incredible. ARDY guided me through every step and helped me acquire my property, which has already appreciated significantly."</p>
+    </div>
+    <div class="t-card rv d2">
+      <div class="t-top"><div class="t-av">DV</div><div><p class="t-name">Deepak Verma</p><p class="t-loc">From Bangalore, Now In Dubai</p><span class="t-stars">★★★★★</span></div></div>
+      <p>"Trusting ARDY to purchase Aqua Maya was the smartest decision I made. Professional, skilled, and comprehensive service ensures all your real estate needs are fully covered."</p>
+    </div>
+  </div>
+  <div class="t-nav">
+    <button class="t-btn" id="prevT">←</button>
+    <button class="t-btn" id="nextT">→</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     AGENT PORTRAIT
+══════════════════════════════════════════ -->
+<div class="agent-section" id="team">
+  <div class="ag-img rv-l">
+    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=700&q=85" alt="ARDY Property Specialist"/>
+  </div>
+  <div class="ag-body rv-r">
+    <span class="eyebrow">Our Team</span>
+    <h3 class="sec-title">Your Dedicated Property Specialist</h3>
+    <p>With deep market knowledge and an unwavering commitment to client success, our specialists bring unparalleled expertise in Dubai's luxury property landscape.</p>
+    <p>From first inquiry through to handover, we are your trusted partner at every stage of your property journey in the UAE.</p>
+    <p class="ag-name">Ryan Pearl</p>
+    <p class="ag-role">Senior Property Consultant · ARDY Real Estate</p>
+    <p class="ag-sig">Ryan Pearl</p>
+    <a href="#contact" class="btn-brown" style="margin-top:24px;display:inline-block">Contact Our Team</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════ -->
+<section class="services-section" id="services">
+  <span class="eyebrow">— What We Offer —</span>
+  <h2 class="sec-title">Premium Services for Every Need</em></h2>
+  <div class="srv-grid">
+    <div class="srv-item rv d1"><p class="srv-n">01</p><h4>Off-Plan Property</h4><p>Secure your dream property before completion at the best prices with flexible payment plans from Dubai's top developers.</p></div>
+    <div class="srv-item rv d2"><p class="srv-n">02</p><h4>Property Management</h4><p>Full-service property management ensuring your investment is well maintained and generates consistent rental income.</p></div>
+    <div class="srv-item rv d3"><p class="srv-n">03</p><h4>Buying &amp; Selling</h4><p>Expert guidance through every step of your property transaction, from market analysis to successful completion.</p></div>
+    <div class="srv-item rv d1"><p class="srv-n">04</p><h4>Leasing Services</h4><p>Comprehensive leasing support including tenant screening, legal documentation, and ongoing tenancy management.</p></div>
+    <div class="srv-item rv d2"><p class="srv-n">05</p><h4>Investment Advisory</h4><p>Strategic investment advice based on market data, ROI analysis, and long-term growth projections in Dubai's market.</p></div>
+    <div class="srv-item rv d3"><p class="srv-n">06</p><h4>Interior Design</h4><p>Interior design consultation and furnishing packages tailored to maximise your property's appeal and rental value.</p></div>
+  </div>
+</section>
+
+<!-- PRE-SALE BAND -->
+<div class="quote-wrap">
+  <div class="quote-bg"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85" alt="Exclusive Pre-Sale"/></div>
+  <div class="quote-bg-ov" style="background:linear-gradient(120deg,rgba(61,42,35,.82) 0%,rgba(61,42,35,.55) 100%)"></div>
+  <div class="quote-inner rv">
+    <span class="eyebrow" style="color:var(--gold);display:flex;align-items:center;gap:10px;justify-content:center">
+      <span style="width:24px;height:1px;background:var(--gold);display:inline-block"></span>
+      Exclusive Pre-Sale Now Open!
+      <span style="width:24px;height:1px;background:var(--gold);display:inline-block"></span>
+    </span>
+    <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:300;color:var(--blush);margin-bottom:16px;line-height:1.1">
+      Secure Your Premium Unit Today
+    </h2>
+    <p style="font-size:.85rem;color:rgba(241,236,234,.75);margin-bottom:28px">Limited units available at pre-launch pricing. Speak with our specialists and lock in the best rate before public release.</p>
+    <a href="#contact" class="btn-gold">Claim Your Unit ↗</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════ -->
+<section class="contact-section" id="contact">
+  <span class="eyebrow">Get In Touch</span>
+  <h2 class="sec-title">Start Your Property Journey</h2>
+  <div class="contact-grid">
+    <div class="rv-l">
+      <div class="ci-item"><span class="ci-ic">📍</span><div><p class="ci-label">Office Address</p><p>Al Owais Building, Sheikh Zayed Road, Dubai, UAE</p></div></div>
+      <div class="ci-item"><span class="ci-ic">📞</span><div><p class="ci-label">Phone</p><a href="tel:+971505761914">+971 50 576 1914</a><br/><a href="tel:+971528426615">+971 52 842 6615</a></div></div>
+      <div class="ci-item"><span class="ci-ic">✉️</span><div><p class="ci-label">Email</p><a href="mailto:info@ardyrealestatees.com">info@ardyrealestatees.com</a></div></div>
+    
+    </div>
+    <div class="rv-r">
+      <form class="cf-form" onsubmit="return handleForm(this)">
+        <input type="text" placeholder="Your Full Name" required/>
+        <input type="email" placeholder="Email Address" required/>
+        <input type="tel" placeholder="Phone Number" required/>
+       
+        <textarea placeholder="Your message..." rows="4"></textarea>
+        <button type="submit" class="btn-brown" style="width:100%;padding:13px">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER  (shared — sourced from css/footer.css + js/global.js)
+══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="ft-brand">
+      <div class="ft-logo">
+        <img src="images/logo.png" alt="ARDY Real Estate"/>
+        
+      </div>
+      <p>Professional real estate services, handpicked investment-ready developments, and expert advice to help you succeed in Dubai's property market.</p>
+      <div class="ft-contact">
+        <p>📍 Al Owais Building, Sheikh Zayed Road, Dubai</p>
+        <p>📞 <a href="tel:+971505761914" style="color:inherit">+971 50 576 1914</a></p>
+        <p>📞 <a href="tel:+971528426615" style="color:inherit">+971 52 842 6615</a></p>
+        <p>✉️ <a href="mailto:info@ardyrealestatees.com" style="color:inherit">info@ardyrealestatees.com</a></p>
+      </div>
+      <!-- Social Icons -->
+      <div class="ft-soc" aria-label="Social media links">
+        <a href="https://facebook.com/ardyrealestate" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://instagram.com/ardyrealestate" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" style="fill:var(--brown)"/><circle cx="17.5" cy="6.5" r="1" style="fill:var(--brown)"/></svg>
+        </a>
+        <a href="https://wa.me/971505761914" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+        <a href="https://twitter.com/ardyrealestate" target="_blank" rel="noopener" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com/@ardyrealestate" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" style="fill:var(--brown)"/></svg>
+        </a>
+        <a href="https://linkedin.com/company/ardyrealestate" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+             </div>
+    </div>
+
+    <div class="ft-cl">
+      <span class="ft-h">Quick Links</span>
+      <a href="index.html">Home</a>
+      <a href="#about">About</a>
+      <a href="#team">Our Team</a>
+      <a href="#properties">Properties</a>
+      <a href="#invest">Why Dubai</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="ft-cl">
+      <span class="ft-h">Our Services</span>
+      <a href="Off_plan_property_management .html">Off-Plan Property</a>
+      <a href="Property_managemen.html">Property Management</a>
+      <a href="Buying_selling.html">Buying &amp; Selling</a>
+      <a href="Leasing_services.html">Leasing Services</a>
+      <a href="project-sales-marketing.html">Project Sales Marketing</a>
+      <a href="product-design.html">Product Design</a>
+    </div>
+
+    <div class="ft-cl">
+      <span class="ft-h">Newsletter</span>
+      <p style="font-size:.75rem;color:rgba(241,236,234,.45);margin-bottom:0;line-height:1.7">Updates on Dubai real estate opportunities and exclusive pre-launch offers.</p>
+      <div class="ft-nl-form">
+        <input type="email" placeholder="Your email address"/>
+        <button type="button" onclick="ftSubscribe(this)">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 ARDY Real Estate. All rights reserved. Powered by Majestic Group.</p>
+    <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a> · <a href="#">RERA Licence</a></p>
+  </div>
+</footer>
+
+<!-- ── Shared external JS (nav, scroll reveal, forms) ── -->
+<script src="js/global.js"></script>
+
+<!-- ── Hero slider JS (only on pages that have a slider) ── -->
+<script src="js/hero-slider.js"></script>
+
+<!-- ── Page-specific JS (testimonial nav) ── -->
+<script>
+(function () {
+  const tcards = document.querySelectorAll('.t-card');
+  let ti = 0;
+  function showT(n) {
+    if (window.innerWidth > 640) { tcards.forEach(c => c.style.display = ''); return; }
+    tcards.forEach(c => c.style.display = 'none');
+    tcards[n].style.display = 'block';
+  }
+  document.getElementById('prevT').addEventListener('click', () => { ti = (ti - 1 + tcards.length) % tcards.length; showT(ti); });
+  document.getElementById('nextT').addEventListener('click', () => { ti = (ti + 1) % tcards.length; showT(ti); });
+  window.addEventListener('resize', () => showT(ti));
+  showT(0);
+})();
+</script>
+
+</body>
+</html>

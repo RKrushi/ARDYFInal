@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Mail Test - ARDY Real Estate</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+        .result.show {
+            display: block;
+        }
+        .result.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .result.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 PHP Mail Test</h1>
+        <p class="subtitle">Test your PHP mail() configuration for ARDY Real Estate contact form</p>
+        
+        <div class="note">
+            ⚠️ <strong>Note:</strong> PHP <span class="code">mail()</span> may not work on XAMPP localhost without additional SMTP configuration. For best results, test on your live server.
+        </div>
+
+        <form id="testForm" onsubmit="sendTest(event)">
+            <div class="form-group">
+                <label for="email">Your Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Test Message (optional)</label>
+                <textarea id="message" name="message" placeholder="This is a test email from PHP mail()"></textarea>
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">
+                Send Test Email
+            </button>
+        </form>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function sendTest(event) {
+            event.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            const result = document.getElementById('result');
+            
+            // Show loading
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span>Sending...';
+            result.classList.remove('show', 'success', 'error');
+            
+            // Collect form data
+            const formData = new FormData();
+            formData.append('to_email', document.getElementById('email').value);
+            formData.append('to_name', document.getElementById('name').value);
+            formData.append('test_message', document.getElementById('message').value || 'This is a test email');
+            
+            // Send to PHP
+            fetch('test-php-mail.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                btn.disabled = false;
+                btn.innerHTML = 'Send Test Email';
+                result.classList.add('show');
+                
+                if(data.success) {
+                    result.classList.add('success');
+                    result.innerHTML = `
+                        <strong>✅ Success!</strong><br>
+                        Test email sent to <strong>${document.getElementById('email').value}</strong><br>
+                        <small>Check your inbox (and spam folder). If received, your PHP mail configuration is working!</small>
+                    `;
+                } else {
+                    result.classList.add('error');
+                    result.innerHTML = `
+                        <strong>❌ Failed</strong><br>
+                        ${data.message}<br>
+                        <small>PHP mail() may not be configured. Try testing on your live server or configure SMTP.</small>
+                    `;
+                }
+            })
+            .catch(error => {
+                btn.disabled = false;
+                btn.innerHTML = 'Send Test Email';
+                result.classList.add('show', 'error');
+                result.innerHTML = `
+                    <strong>❌ Error</strong><br>
+                    ${error.message}<br>
+                    <small>Make sure test-php-mail.php exists in the same folder.</small>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>

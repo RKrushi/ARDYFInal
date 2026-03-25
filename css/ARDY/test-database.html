@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Test - ARDY Real Estate</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #3d2a23 0%, #523a31 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            max-width: 700px;
+            width: 100%;
+            padding: 40px;
+        }
+        h1 {
+            color: #3d2a23;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #635840;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #3d2a23;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #2a1c17;
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .result.show {
+            display: block;
+        }
+        .result.success {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            color: #155724;
+        }
+        .result.error {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            color: #721c24;
+        }
+        .result strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .result ul {
+            margin: 12px 0 0 20px;
+        }
+        .result ul li {
+            margin: 6px 0;
+        }
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .steps {
+            background: #f7f5f4;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            line-height: 1.8;
+            color: #635840;
+        }
+        .steps h3 {
+            color: #3d2a23;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        .steps ol {
+            margin-left: 20px;
+        }
+        .steps ol li {
+            margin: 8px 0;
+        }
+        .steps code {
+            background: rgba(61,42,35,0.08);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #3d2a23;
+        }
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .links {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #e5dfd7;
+        }
+        .links a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #f7f5f4;
+            color: #3d2a23;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .links a:hover {
+            background: #e5dfd7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗄️ Database Connection Test</h1>
+        <p class="subtitle">Test your MySQL database setup for ARDY Real Estate</p>
+        
+        <div class="steps">
+            <h3>📋 Setup Steps (If Not Done Yet):</h3>
+            <ol>
+                <li>Open <strong>phpMyAdmin</strong> (http://localhost/phpmyadmin)</li>
+                <li>Click <strong>"Import"</strong> tab</li>
+                <li>Choose file: <code>setup-database.sql</code></li>
+                <li>Click <strong>"Go"</strong> to create database and tables</li>
+                <li>Come back here and click "Test Database Connection"</li>
+            </ol>
+            <p style="margin-top:12px;"><strong>Or run this SQL manually:</strong></p>
+            <div class="code-block">CREATE DATABASE IF NOT EXISTS ardy_realestate;</div>
+        </div>
+
+        <button class="btn" id="testBtn" onclick="testDatabase()">
+            Test Database Connection
+        </button>
+
+        <div class="result" id="result"></div>
+        
+        <div class="links">
+            <a href="http://localhost/phpmyadmin" target="_blank">📊 Open phpMyAdmin</a>
+            <a href="admin-panel.php">🔐 Admin Panel</a>
+            <a href="contact.html">📝 Contact Form</a>
+        </div>
+    </div>
+
+    <script>
+        function testDatabase() {
+            const btn = document.getElementById('testBtn');
+            const result = document.getElementById('result');
+            
+            // Show loading
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span>Testing...';
+            result.classList.remove('show', 'success', 'error');
+            
+            // Test connection
+            fetch('test-database.php')
+            .then(response => response.json())
+            .then(data => {
+                btn.disabled = false;
+                btn.innerHTML = 'Test Database Connection';
+                result.classList.add('show');
+                
+                if(data.success) {
+                    result.classList.add('success');
+                    let html = '<strong>✅ Database Connection Successful!</strong>';
+                    html += '<p>Your database is properly configured and ready to use.</p>';
+                    
+                    if(data.tables && data.tables.length > 0) {
+                        html += '<p><strong>Tables found:</strong></p><ul>';
+                        data.tables.forEach(table => {
+                            html += '<li>' + table + '</li>';
+                        });
+                        html += '</ul>';
+                    }
+                    
+                    if(data.submission_count !== undefined) {
+                        html += '<p><strong>Total Submissions:</strong> ' + data.submission_count + '</p>';
+                    }
+                    
+                    html += '<p style="margin-top:15px;">✓ Contact form submissions will be saved to database<br>';
+                    html += '✓ Admin panel will display saved submissions<br>';
+                    html += '✓ Emails will still be sent (no external API)</p>';
+                    
+                    result.innerHTML = html;
+                } else {
+                    result.classList.add('error');
+                    let html = '<strong>❌ Database Connection Failed</strong>';
+                    html += '<p>' + data.message + '</p>';
+                    
+                    if(data.error_code === 'DB_NOT_FOUND') {
+                        html += '<p><strong>Solution:</strong></p>';
+                        html += '<ol style="margin-left:20px;margin-top:10px;">';
+                        html += '<li>Open phpMyAdmin</li>';
+                        html += '<li>Click "Import" tab</li>';
+                        html += '<li>Select <code>setup-database.sql</code></li>';
+                        html += '<li>Click "Go"</li>';
+                        html += '<li>Test again</li>';
+                        html += '</ol>';
+                    } else if(data.error_code === 'CONNECTION_FAILED') {
+                        html += '<p><strong>Check:</strong></p>';
+                        html += '<ul style="margin-left:20px;margin-top:10px;">';
+                        html += '<li>Is XAMPP MySQL running?</li>';
+                        html += '<li>Are credentials correct in db-config.php?</li>';
+                        html += '</ul>';
+                    }
+                    
+                    result.innerHTML = html;
+                }
+            })
+            .catch(error => {
+                btn.disabled = false;
+                btn.innerHTML = 'Test Database Connection';
+                result.classList.add('show', 'error');
+                result.innerHTML = '<strong>❌ Error</strong><p>' + error.message + '</p>';
+            });
+        }
+    </script>
+</body>
+</html>
